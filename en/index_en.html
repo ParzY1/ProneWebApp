@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prone Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/logo.png" type="image/png">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="img/logo.png" alt="Prone Logo">
+            <p>Prone</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="query_log.html">Query log</a></li>
+                <li><a href="groups.html">Groups</a></li>
+                <li><a href="clients.html">Clients</a></li>
+                <li><a href="domains.html">Domains</a></li>
+                <li><a href="adlist.html">Adlists</a></li>
+                <li><a href="settings.html">Settings</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="main-content">
+        <h1>Prone Dashboard</h1>
+        <div class="dashboard-tiles">
+            <div class="tile">Total Queries</div>
+            <div class="tile">Queries Blocked</div>
+            <div class="tile">Domains on Adlists</div>
+        </div>
+
+        <div class="charts">
+            <div class="chart">Total queries over last 24 hours</div>
+            <div class="chart">Client activity over last 24 hours</div>
+        </div>
+
+        <div class="small-charts">
+            <div class="half-chart">
+                Query types
+            </div>
+            <div class="half-chart">
+                Upstream servers
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        Created by ACDIT Sp. z o.o.
+    </footer>
+</body>
+
+</html>
