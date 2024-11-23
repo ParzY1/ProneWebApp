@@ -3,11 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prone</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="img/logo.png" type="image/png">
+    <title>Client Management</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="icon" href="../img/logo.png" type="image/png">
 </head>
 <body>
-    
+
+    <!-- Sidebar navigation -->
+    <div class="sidebar">
+        <div class="logo">
+            <img src="../img/logo.png" alt="Prone Logo">
+            <p>Prone</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../en/index_en.html">Dashboard</a></li>
+                <li><a href="../en/query_log.html">Query Log</a></li>
+                <li><a href="../en/groups.html">Groups</a></li>
+                <li><a href="../en/adlists.html">Adlists</a></li>
+                <li><a href="../en/clients.html">Clients</a></li>
+                <li><a href="../en/domains.html">Domains</a></li>
+                <li><a href="../en/settings.html">Settings</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <h1>Client Management</h1>
+
+        <!-- Add new client section -->
+        <div class="add-client-section">
+            <h2>Add New Client</h2>
+            <div class="input-group">
+                <label for="client-name">Client:</label>
+                <input type="text" id="client-name" placeholder="Enter client name">
+
+                <label for="comment">Comment:</label>
+                <input type="text" id="comment" placeholder="Enter comment">
+            </div>
+            <p>You can choose an existing client or add a new one by typing above and pressing enter.</p>
+            <p>
+                Clients can be described by IP addresses (both IPv4 and IPv6 supported), IP subnets (CIDR notation, e.g., 192.168.2.0/24), MAC addresses (e.g., 12:34:56:78:9A:BC), 
+                hostnames (e.g., localhost), or interfaces they are connected to (prefixed with a colon, e.g., :eth0).
+            </p>
+            <button class="add-button">Add</button>
+        </div>
+
+        <!-- Clients list section -->
+        <div class="clients-list-section">
+            <h2>Configured Clients List</h2>
+            <div class="filter-options">
+                <label for="records"></label>
+                <select id="records">
+                    <option value="10" selected>10 entries</option>
+                    <option value="25">25 entries</option>
+                    <option value="50">50 entries</option>
+                </select>
+            </div>
+
+            <table class="clients-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>IP</th>
+                        <th>Added On</th>
+                        <th>Modified On</th>
+                        <th>Comment</th>
+                        <th>Groups</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>192.168.1.1</td>
+                        <td>01-01-2024</td>
+                        <td>05-01-2024</td>
+                        <td>Test client</td>
+                        <td>Group 1</td>
+                        <td>
+                            <button class="edit-button">📝</button>
+                            <button class="delete-button">❌</button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        Created by ACDIT Sp. z o.o.
+    </footer>
+
 </body>
 </html>

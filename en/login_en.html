@@ -1,20 +1,25 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prone</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
+    <link rel="stylesheet" href="../styles/stylelog.css">
 </head>
 <body>
     <div class="login-container">
-        <div class="login-box">
-            <img src="img/logo.png" alt="Prone Logo">
-            <form action="/login" method="POST">
-                <input type="password" placeholder="Hasło">
-                <button type="submit">Sign in</button>
-            </form>
-        </div>
+        <img src="../img/logo.png" alt="Logo">
+        <h1>Prone</h1>
+        <form>
+            <input type="text" placeholder="Username" required>
+            <input type="password" placeholder="Password" required>
+            <label>
+                <input type="checkbox">
+                Remember me (7 days)
+            </label>
+            <button type="submit">Log in</button>
+        </form>
+        <a href="#">Forgot your password?</a>
     </div>
 </body>
 </html>

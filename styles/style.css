@@ -1,0 +1,683 @@
+/* Ogólny styl dla strony */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #121212; /* Ciemny motyw */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Minimum wysokość strony */
+    overflow: hidden;
+}
+html, body {
+    height: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #1b1b1b; /* Bardziej stonowana czerń */
+    position: fixed;
+    height: 100%;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar .logo {
+    text-align: center;
+    padding: 20px;
+}
+
+.sidebar .logo img {
+    max-width: 70%;
+    height: auto;
+}
+
+.sidebar .logo p {
+    font-size: 1.2em;
+    color: #ffa500; /* Pomarańczowy akcent */
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar nav ul li {
+    padding: 15px;
+    text-align: center;
+    transition: background 0.3s;
+}
+
+.sidebar nav ul li:hover {
+    background-color: #ffa500; /* Pomarańczowy efekt hover */
+    color: #000;
+}
+
+.sidebar nav ul li a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    font-size: 1em;
+}
+
+/* Główna zawartość */
+.main-content {
+    flex:1;
+    margin-left: 250px;
+    padding: 20px;
+}
+
+/* Nagłówek */
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #ffa500; /* Pomarańczowy akcent */
+}
+
+/* Kafelki */
+.dashboard-tiles {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+/* Tabela zapytań */
+.query-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 0.9em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    background-color: #1e1e1e; /* Tło tabeli */
+    border-radius: 10px; /* Zaokrąglenie tabeli */
+}
+
+/* Opcje filtrowania */
+.filter-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    background-color: #2e2e2e; /* Ciemniejsze tło */
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+/* Notatka */
+.note {
+    margin-top: 20px;
+    background-color: #1b1b1b; /* Tło notatki */
+    padding: 15px;
+    border-left: 5px solid #ffa500;
+    font-size: 0.9em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+
+.tile {
+    background-color: #1e1e1e; /* Ciemne kafelki */
+    padding: 20px;
+    width: 30%;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tile:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Wykresy */
+.charts {
+    display: flex;
+    justify-content: space-between; /* Równy odstęp między wykresami */
+    flex-wrap: wrap;
+    gap: 10px; /* Dodatkowy odstęp między boxami */
+}
+
+.chart {
+    background-color: #1e1e1e; /* Ciemne tło wykresu */
+    padding: 20px;
+    height: 250px; /* Mniejsza wysokość */
+    border-radius: 10px;
+    width: calc(50% - 10px); /* 50% szerokości minus margines */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #aaa;
+}
+
+
+/* Stopka */
+.footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #1b1b1b; /* Dostosowane do sidebaru */
+    color: #ffa500;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    font-size: 1em;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+}
+/* Tabela zapytań */
+.query-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 0.9em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.query-table th, .query-table td {
+    border: 1px solid #333;
+    padding: 10px;
+    text-align: center;
+}
+
+.query-table th {
+    background-color: #ffa500;
+    color: #000;
+}
+
+.query-table tr:nth-child(even) {
+    background-color: #1e1e1e;
+}
+
+/* Przyciski w tabeli */
+.allow-btn {
+    padding: 8px 12px;
+    background-color: #ffa500;
+    border: none;
+    color: #000;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.allow-btn:hover {
+    background-color: #ffc04d;
+}
+
+/* Opcje filtrowania */
+.filter-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    background-color: #1e1e1e;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.filter-options label {
+    font-size: 0.9em;
+    margin-right: 10px;
+}
+
+.filter-options input {
+    padding: 8px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: #2e2e2e;
+    color: #fff;
+    width: 45%;
+}
+
+/* Notatka */
+.note {
+    margin-top: 20px;
+    background-color: #1b1b1b;
+    padding: 15px;
+    border-left: 5px solid #ffa500;
+    font-size: 0.9em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+/* Sekcja nagłówka */
+.input-section {
+    margin-bottom: 20px;
+}
+
+.input-section label {
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+.input-section input, .input-section textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: #2e2e2e;
+    color: white;
+}
+
+.add-btn {
+    background-color: #ffa500;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.add-btn:hover {
+    background-color: #ffc04d;
+}
+
+/* Wskazówki */
+.instructions {
+    margin-top: 20px;
+}
+
+.instructions ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.instructions ul li {
+    margin-bottom: 10px;
+}
+
+/* Lista grup */
+.pagination {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.pagination select {
+    padding: 8px;
+    margin-left: 10px;
+    background-color: #2e2e2e;
+    color: white;
+    border: 1px solid #333;
+    border-radius: 5px;
+}
+
+.group-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 1em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.group-table th, .group-table td {
+    border: 1px solid #333;
+    padding: 10px;
+    text-align: center;
+}
+
+.group-table th {
+    background-color: #ffa500;
+    color: black;
+}
+
+.group-table tr:nth-child(even) {
+    background-color: #1e1e1e;
+}
+
+/* Akcje w tabeli */
+.edit-btn, .delete-btn {
+    padding: 5px 10px;
+    background-color: #ffa500;
+    border: none;
+    color: black;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+    background-color: #ffc04d;
+}
+/* Dodaj nowe style do sekcji dodawania klienta */
+.add-client-section {
+    background-color: #2e2e2e; /* Ciemniejsze tło dla sekcji dodawania klienta */
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.add-client-section h2 {
+    font-size: 1.8em;
+    color: #ffa500; /* Pomarańczowy nagłówek */
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    font-size: 1em;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.input-group input {
+    padding: 12px;
+    margin-bottom: 15px;
+    background-color: #2e2e2e;
+    color: #fff;
+    border: 1px solid #333;
+    border-radius: 5px;
+}
+
+.add-button {
+    padding: 12px 20px;
+    background-color: #ffa500;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-button:hover {
+    background-color: #ffc04d;
+}
+
+/* Tabela z klientami */
+.clients-list-section {
+    background-color: #2e2e2e; /* Tło tabeli */
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.clients-list-section h2 {
+    font-size: 1.8em;
+    color: #ffa500;
+    margin-bottom: 20px;
+}
+
+.filter-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    background-color: #1e1e1e;
+    padding: 12px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.filter-options label {
+    font-size: 1em;
+    color: #fff;
+}
+
+.filter-options select {
+    padding: 8px;
+    background-color: #2e2e2e;
+    color: #fff;
+    border: 1px solid #333;
+    border-radius: 5px;
+}
+
+/* Stylowanie tabeli klientów */
+.clients-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1em;
+    margin-top: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.clients-table th, .clients-table td {
+    border: 1px solid #333;
+    padding: 10px;
+    text-align: center;
+}
+
+.clients-table th {
+    background-color: #ffa500;
+    color: #000;
+}
+
+.clients-table tr:nth-child(even) {
+    background-color: #1e1e1e;
+}
+
+.clients-table button {
+    padding: 8px 15px;
+    background-color: #ffa500;
+    border: none;
+    color: #000;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.clients-table button:hover {
+    background-color: #ffc04d;
+}
+
+/* Przyciski edycji i usuwania */
+.edit-button, .delete-button {
+    background-color: #ffa500;
+    color: #000;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.edit-button:hover, .delete-button:hover {
+    background-color: #ffc04d;
+}
+
+/* Sekcja instrukcji */
+.instructions {
+    margin-top: 20px;
+    font-size: 1em;
+    color: #fff;
+}
+
+.instructions ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.instructions ul li {
+    margin-bottom: 10px;
+}
+/* Kontener główny */
+.container {
+    padding: 30px;
+    margin-left: 250px; /* Zostawiam miejsce dla sidebaru */
+}
+
+/* Nagłówek główny */
+.container h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #ffa500; /* Pomarańczowy kolor */
+}
+
+/* Sekcja dodawania domeny */
+.add-domain {
+    background-color: #2e2e2e; /* Ciemne tło */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.add-domain h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #ffa500; /* Pomarańczowy kolor */
+}
+
+.add-domain label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white; /* Biały kolor dla tekstu */
+}
+
+.add-domain input,
+.add-domain select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #333; /* Ciemna ramka */
+    background-color: #1e1e1e; /* Ciemne tło inputów */
+    color: white; /* Biały kolor tekstu w polach */
+}
+
+.add-domain .btn {
+    background-color: #ffa500; /* Pomarańczowe tło przycisków */
+    color: black; /* Czarny tekst */
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-domain .btn:hover {
+    background-color: #ffc04d; /* Jaśniejszy pomarańczowy przy hover */
+}
+
+.add-domain .tips {
+    background-color: #1e1e1e;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+.add-domain .tips p {
+    font-size: 16px;
+    color: white; /* Biały tekst */
+}
+
+.add-domain .tips ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    color: white; /* Biały tekst */
+}
+
+/* Lista domen */
+.domain-list {
+    margin-top: 30px;
+}
+
+.domain-list h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #ffa500; /* Pomarańczowy kolor */
+}
+
+.domain-list table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.domain-list th, .domain-list td {
+    padding: 12px;
+    border: 1px solid #333;
+    text-align: left;
+}
+
+.domain-list th {
+    background-color: #ffa500;
+    color: black; /* Czarny tekst */
+}
+
+.domain-list tr:nth-child(even) {
+    background-color: #1e1e1e; /* Ciemne tło dla parzystych wierszy */
+}
+
+.domain-list .remove {
+    background-color: #e74c3c; /* Czerwony kolor dla usuwania */
+    color: white;
+}
+
+.domain-list .remove:hover {
+    background-color: #c0392b; /* Ciemniejszy czerwony przy hover */
+}
+
+.domain-list .block {
+    background-color: #f39c12; /* Pomarańczowy dla blokowania */
+    color: white;
+}
+
+.domain-list .block:hover {
+    background-color: #e67e22; /* Ciemniejszy pomarańczowy przy hover */
+}
+
+.domain-list .allow {
+    background-color: #2ecc71; /* Zielony dla dopuszczenia */
+    color: white;
+}
+
+.domain-list .allow:hover {
+    background-color: #27ae60; /* Ciemniejszy zielony przy hover */
+}
+
+
+
+/* Responsywność dla urządzeń mobilnych */
+@media (max-width: 768px) {
+    .add-client-section,
+    .clients-list-section {
+        margin-left: 0;
+    }
+
+    .filter-options {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .filter-options select {
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .clients-table th, .clients-table td {
+        font-size: 0.8em;
+        padding: 8px;
+    }
+
+    .add-button {
+        width: 100%;
+        padding: 15px;
+    }
+}
+
+
+
+
+/* Responsywność */
+@media (max-width: 768px) {
+    .dashboard-tiles {
+        flex-direction: column;
+    }
+
+    .tile {
+        width: 100%;
+    }
+
+    .charts {
+        flex-direction: column;
+    }
+
+    .chart {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}

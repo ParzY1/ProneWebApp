@@ -3,11 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prone</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="img/logo.png" type="image/png">
+    <title>Domain Management</title>
+    <link rel="stylesheet" href="../styles/style.css">
 </head>
 <body>
-    
+    <!-- Sidebar navigation -->
+    <div class="sidebar">
+        <div class="logo">
+            <img src="../img/logo.png" alt="Prone Logo">
+            <p>Prone</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../en/index_en.html">Dashboard</a></li>
+                <li><a href="../en/query_log.html">Query Log</a></li>
+                <li><a href="../en/groups.html">Groups</a></li>
+                <li><a href="../en/adlists.html">Adlists</a></li>
+                <li><a href="../en/clients.html">Clients</a></li>
+                <li><a href="../en/domains.html">Domains</a></li>
+                <li><a href="../en/settings.html">Settings</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main content -->
+    <div class="container">
+        <h1>Domain Management</h1>
+
+        <section class="add-domain">
+            <h2>Add New Domain</h2>
+            <label for="domain">Domain:</label>
+            <input type="text" id="domain" placeholder="Enter domain">
+            
+            <label for="comment">Comment:</label>
+            <input type="text" id="comment" placeholder="Enter comment">
+            
+            <label for="status">Status:</label>
+            <select id="status">
+                <option value="allowed">Allowed</option>
+                <option value="blocked">Blocked</option>
+            </select>
+
+            <button class="btn">Add</button>
+
+            <div class="tips">
+                <p><strong>Tips:</strong></p>
+                <ul>
+                    <li>1. You can add multiple domains by separating each domain name with a space.</li>
+                    <li>2. Domain names can contain spaces if enclosed in quotation marks. For example, "example.com".</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="domain-list">
+            <h2>Allowed Domains</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Domain</th>
+                        <th>Comment</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example row -->
+                    <tr>
+                        <td>example.com</td>
+                        <td>No comment</td>
+                        <td>
+                            <button class="btn remove">❌ Remove</button>
+                            <button class="btn block">🚫 Block</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="domain-list">
+            <h2>Blocked Domains</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Domain</th>
+                        <th>Comment</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>blocked.com</td>
+                        <td>No comment</td>
+                        <td>
+                            <button class="btn remove">❌ Remove</button>
+                            <button class="btn allow">✔️ Allowed</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <footer>
+        Created by ACDIT Sp. z o.o.
+    </footer>
+
 </body>
 </html>

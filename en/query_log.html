@@ -3,11 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prone</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="img/logo.png" type="image/png">
+    <title>Pi-hole Interface</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="icon" href="../img/logo.png" type="image/png">
 </head>
 <body>
-    
+
+    <!-- Sidebar navigation -->
+    <div class="sidebar">
+        <div class="logo">
+            <img src="img/logo.png" alt="Prone Logo">
+            <p>Pi-hole</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../en/index_en.html">Dashboard</a></li>
+                <li><a href="../en/query_log.html">Query Log</a></li>
+                <li><a href="../en/groups.html">Groups</a></li>
+                <li><a href="../en/clients.html">Clients</a></li>
+                <li><a href="../en/domains.html">Domains</a></li>
+                <li><a href="../en/adlists.html">Adlists</a></li>
+                <li><a href="../en/settings.html">Settings</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <h1>Recent Queries</h1>
+
+        <table class="query-table">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Type</th>
+                    <th>Domain</th>
+                    <th>Client</th>
+                    <th>Status</th>
+                    <th>Reply Type</th>
+                    <th>Time Taken</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+        </table>
+
+        <!-- Filtering options -->
+        <div class="filter-options">
+            <label for="filter-client">Filter by Client:</label>
+            <input type="text" id="filter-client" placeholder="Enter Client IP...">
+            
+            <label for="filter-domain">Filter by Domain:</label>
+            <input type="text" id="filter-domain" placeholder="Enter Domain...">
+        </div>
+
+        <!-- Note about logging -->
+        <div class="note">
+            <p>Note: Queries for Prone and the hostname are never logged.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        Created by ACDIT Sp. z o.o.
+    </footer>
+
 </body>
 </html>

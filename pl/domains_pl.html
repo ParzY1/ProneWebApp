@@ -1,13 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prone</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="img/logo.png" type="image/png">
+    <title>Zarządzanie Domenami</title>
+    <link rel="stylesheet" href="../styles/style.css">
 </head>
 <body>
-    
+    <!-- Sidebar navigation -->
+    <div class="sidebar">
+        <div class="logo">
+            <img src="../img/logo.png" alt="Prone Logo">
+            <p>Prone</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../pl/index_pl.html">Ekran główny</a></li>
+                <li><a href="../pl/query_log_pl.html">Logi zapytań</a></li>
+                <li><a href="../pl/groups_pl.html">Grupy</a></li>
+                <li><a href="../pl/adlists_pl.html">Lista filtrów</a></li>
+                <li><a href="../pl/clients_pl.html">Klienci</a></li>
+                <li><a href="../pl/domains_pl.html">Domeny</a></li>
+                <li><a href="../pl/settings_pl.html">Ustawienia</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main content -->
+    <div class="container">
+        <h1>Zarządzanie domenami</h1>
+
+        <section class="add-domain">
+            <h2>Dodaj nową domenę</h2>
+            <label for="domain">Domena:</label>
+            <input type="text" id="domain" placeholder="Wprowadź domenę">
+            
+            <label for="comment">Komentarz:</label>
+            <input type="text" id="comment" placeholder="Wprowadź komentarz">
+            
+            <label for="status">Status:</label>
+            <select id="status">
+                <option value="allowed">Dozwolone</option>
+                <option value="blocked">Zablokowane</option>
+            </select>
+
+            <button class="btn">Dodaj</button>
+
+            <div class="tips">
+                <p><strong>Wskazówki:</strong></p>
+                <ul>
+                    <li>1. Można dodać wiele domen, oddzielając każdą nazwę domeny spacją.</li>
+                    <li>2. Nazwy domen mogą zawierać spacje, jeśli są wprowadzone w cudzysłowiu. Na przykład "example.com".</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="domain-list">
+            <h2>Domeny Dozwolone</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Domena</th>
+                        <th>Komentarz</th>
+                        <th>Akcje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Przykładowy wiersz -->
+                    <tr>
+                        <td>example.com</td>
+                        <td>Brak komentarza</td>
+                        <td>
+                            <button class="btn remove">❌ Usuń</button>
+                            <button class="btn block">🚫 Zablokuj</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="domain-list">
+            <h2>Domeny Zablokowane</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Domena</th>
+                        <th>Komentarz</th>
+                        <th>Akcje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Przykładowy wiersz -->
+                    <tr>
+                        <td>blocked.com</td>
+                        <td>Brak komentarza</td>
+                        <td>
+                            <button class="btn remove">❌ Usuń</button>
+                            <button class="btn allow">✔️ Dozwolona</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <footer>
+        Created by ACDIT Sp. z o.o.
+    </footer>
+
 </body>
 </html>

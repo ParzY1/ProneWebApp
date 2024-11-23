@@ -1,13 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prone</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="img/logo.png" type="image/png">
+    <title>Zarządzanie klientami</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="icon" href="../img/logo.png" type="image/png">
 </head>
 <body>
-    
+
+    <!-- Sidebar navigation -->
+    <div class="sidebar">
+        <div class="logo">
+            <img src="../img/logo.png" alt="Prone Logo">
+            <p>Prone</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../pl/index_pl.html">Ekran główny</a></li>
+                <li><a href="../pl/query_log_pl.html">Logi zapytań</a></li>
+                <li><a href="../pl/groups_pl.html">Grupy</a></li>
+                <li><a href="../pl/adlists_pl.html">Lista filtrów</a></li>
+                <li><a href="../pl/clients_pl.html">Klienci</a></li>
+                <li><a href="../pl/domains_pl.html">Domeny</a></li>
+                <li><a href="../pl/settings_pl.html">Ustawienia</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <h1>Zarządzanie klientami</h1>
+
+        <!-- Add new client section -->
+        <div class="add-client-section">
+            <h2>Dodaj nowego klienta</h2>
+            <div class="input-group">
+                <label for="client-name">Klienci:</label>
+                <input type="text" id="client-name" placeholder="Wpisz nazwę klienta">
+
+                <label for="comment">Komentarz:</label>
+                <input type="text" id="comment" placeholder="Wpisz komentarz">
+            </div>
+            <p>Możesz wybrać istniejącego klienta lub dodać nowego, wpisując powyżej i potwierdzając enterem.
+            </p>
+            <p>
+                Klienci mogą być opisani poprzez adresy IP (IPv4 i IPv6 są obsługiwane), podsieci IP (notacja CIDR, np. 192.168.2.0/24), adresy MAC (np. 12:34:56:78:9A:BC), 
+                nazwy hostów (np. localhost) lub interfejsy, do których są podłączone (poprzedzone dwukropkiem, np. :eth0).
+
+            </p>
+            <button class="add-button">Dodaj</button>
+        </div>
+
+        <!-- Clients list section -->
+        <div class="clients-list-section">
+            <h2>Lista skonfigurowanych klientów</h2>
+            <div class="filter-options">
+                <label for="records"></label>
+                <select id="records">
+                    <option value="10" selected>10 wpisów</option>
+                    <option value="25">25 wpisów</option>
+                    <option value="50">50 wpisów</option>
+                </select>
+        
+            </div>
+
+            <table class="clients-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>IP</th>
+                        <th>Data dodania</th>
+                        <th>Data modyfikacji</th>
+                        <th>Komentarz</th>
+                        <th>Grupy</th>
+                        <th>Akcje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example of a client row -->
+                    <tr>
+                        <td>1</td>
+                        <td>192.168.1.1</td>
+                        <td>01-01-2024</td>
+                        <td>05-01-2024</td>
+                        <td>Testowy klient</td>
+                        <td>Grupa 1</td>
+                        <td>
+                            <button class="edit-button">📝</button>
+                            <button class="delete-button">❌</button>
+                        </td>
+                    </tr>
+                    <!-- Additional rows will go here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        Created by ACDIT Sp. z o.o.
+    </footer>
+
 </body>
 </html>

@@ -4,10 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prone</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="img/logo.png" type="image/png">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="icon" href="../img/logo.png" type="image/png">
 </head>
 <body>
-    
+
+    <!-- Sidebar navigation -->
+    <div class="sidebar">
+        <div class="logo">
+            <img src="../img/logo.png" alt="Prone Logo">
+            <p>Prone</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../en/index_en.html">Dashboard</a></li>
+                <li><a href="../en/query_log.html">Query Log</a></li>
+                <li><a href="../en/groups.html">Groups</a></li>
+                <li><a href="../en/clients.html">Clients</a></li>
+                <li><a href="../en/domains.html">Domains</a></li>
+                <li><a href="../en/adlists.html">Adlists</a></li>
+                <li><a href="../en/settings.html">Settings</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <h1>Add Groups</h1>
+
+        <!-- Group adding form -->
+        <div class="input-section">
+            <label for="group-name">Group Name:</label>
+            <input type="text" id="group-name" placeholder="Enter group name">
+            
+            <label for="group-description">Description:</label>
+            <textarea id="group-description" placeholder="Enter group description"></textarea>
+
+            <button class="add-btn">Add</button>
+        </div>
+
+        <!-- Instructions -->
+        <div class="instructions">
+            <p><strong>Instructions:</strong></p>
+            <ul>
+                <li>1. You can add multiple groups by separating each group name with a space.</li>
+                <li>2. Group names can contain spaces if entered in quotes. For example, "My new group".</li>
+            </ul>
+        </div>
+
+        <!-- Group list and pagination -->
+        <section class="group-list">
+            <h2>Group List</h2>
+            <div class="pagination">
+                <label for="records-per-page">Show:</label>
+                <select id="records-per-page">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                </select>
+                <span>records</span>
+            </div>
+
+            <!-- Group table -->
+            <table class="group-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Group 1</td>
+                        <td>Group 1 description</td>
+                        <td>Active</td>
+                        <td><button class="edit-btn">Edit</button><button class="delete-btn">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td>Group 2</td>
+                        <td>Group 2 description</td>
+                        <td>Inactive</td>
+                        <td><button class="edit-btn">Edit</button><button class="delete-btn">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Note about logging -->
+        <div class="note">
+            <p>Note: Queries related to Prone and the host name are never logged.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        Created by ACDIT Sp. z o.o.
+    </footer>
+
 </body>
 </html>

@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prone - Logowanie</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Logowanie</title>
+    <link rel="stylesheet" href="../styles/stylelog.css">
 </head>
 <body>
     <div class="login-container">
-        <div class="login-box">
-            <img src="img/logo.png" alt="Prone Logo">
-            <form action="/login" method="POST">
-                <input type="password" placeholder="Hasło">
-                <button type="submit">Zaloguj się</button>
-            </form>
-        </div>
+        <img src="../img/logo.png" alt="Logo">
+        <h1>Prone</h1>
+        <form>
+            <input type="text" placeholder="Login" required>
+            <input type="password" placeholder="Hasło" required>
+            <label>
+                <input type="checkbox">
+                Zapamietaj mnie (7dni)
+            </label>
+            <button type="submit">Zaloguj sie</button>
+        </form>
+        <a href="#">Zapomniałeś hasła?</a>
     </div>
 </body>
 </html>

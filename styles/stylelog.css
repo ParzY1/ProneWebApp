@@ -1,0 +1,111 @@
+/* Styl dla całej strony */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #121212; /* Ciemne tło */
+    color: #ffffff; /* Biały tekst */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: radial-gradient(circle, #1a1a1a, #121212); /* Efekt subtelnego gradientu */
+}
+
+/* Kontener logowania */
+.login-container {
+    background-color: #1e1e1e; /* Ciemne tło dla formy */
+    border-radius: 10px;
+    padding: 30px 20px;
+    width: 400px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+/* Logo */
+.login-container img {
+    max-width: 80px;
+    margin-bottom: 20px;
+}
+
+/* Nagłówek */
+.login-container h1 {
+    font-size: 1.8rem;
+    color: #ffa500; /* Pomarańczowy akcent */
+    margin-bottom: 20px;
+}
+
+/* Pola tekstowe */
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #292929;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+}
+
+/* Pole wyboru (checkbox) */
+.login-container label {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.login-container input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Przycisk logowania */
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffa500;
+    color: #000;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-container button:hover {
+    background-color: #ff8c00; /* Jaśniejszy pomarańcz */
+}
+
+/* Linki */
+.login-container a {
+    color: #ffa500;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.login-container a:hover {
+    text-decoration: underline;
+}
+
+/* Dodatkowe sekcje */
+.footer-links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-links a {
+    background-color: #292929;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.footer-links a:hover {
+    background-color: #333333;
+}
