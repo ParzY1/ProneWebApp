@@ -8,6 +8,7 @@ body {
     flex-direction: column;
     min-height: 100vh; /* Minimum wysokość strony */
     overflow: hidden;
+    overflow-y:visible;
 }
 html, body {
     height: 100%;
@@ -242,6 +243,26 @@ h1 {
 /* Sekcja nagłówka */
 .input-section {
     margin-bottom: 20px;
+
+    background-color: #2e2e2e; /* Tło tabeli */
+    padding: 20px;
+    border-radius: 8px;
+}
+.group-list{
+    background-color: #2e2e2e; /* Tło tabeli */
+    padding: 20px;
+    border-radius: 8px;
+}
+.add-adlist{
+    background-color: #2e2e2e; /* Tło tabeli */
+    padding: 30px;
+    border-radius: 8px;
+}
+.list-adlists{
+    margin-top:30px;
+    background-color: #2e2e2e; /* Tło tabeli */
+    padding: 20px;
+    border-radius: 8px;
 }
 
 .input-section label {
@@ -458,7 +479,17 @@ h1 {
 .clients-table button:hover {
     background-color: #ffc04d;
 }
-
+.dns-settings{
+    background-color: #2e2e2e; /* Tło tabeli */
+    padding: 20px;
+    border-radius: 8px;
+}
+.interface-settings{
+    margin-top:30px;
+    background-color: #2e2e2e; /* Tło tabeli */
+    padding: 20px;
+    border-radius: 8px;
+}
 /* Przyciski edycji i usuwania */
 .edit-button, .delete-button {
     background-color: #ffa500;
@@ -572,6 +603,9 @@ h1 {
 /* Lista domen */
 .domain-list {
     margin-top: 30px;
+    background-color: #2e2e2e; /* Tło tabeli */
+    padding: 10px;
+    border-radius: 8px;
 }
 
 .domain-list h2 {
@@ -657,6 +691,182 @@ h1 {
         width: 100%;
         padding: 15px;
     }
+}
+/* Tabela w adlist */
+/* Tabela adlist */
+.adlist-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 1em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    background-color: #1e1e1e; /* Tło tabeli */
+    border-radius: 8px;
+    overflow: hidden; /* Dla zaokrąglonych narożników */
+}
+
+.adlist-table th, .adlist-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #333; /* Linie między wierszami */
+    color: #fff;
+}
+
+.adlist-table th {
+    background-color: #ffa500; /* Kolor nagłówków */
+    color: #000;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.adlist-table td select {
+    background-color: #2a2a2a; /* Ciemne tło */
+    color: white; /* Biały tekst */
+    border: 1px solid #333; /* Ciemna ramka */
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 16px;
+}
+
+/* Zmiana koloru tła dla opcji w select */
+.adlist-table td select option {
+    background-color: #2a2a2a; /* Ciemne tło dla opcji */
+    color: white; /* Biały tekst */
+}
+.adlist-table tr:hover {
+    background-color: #2a2a2a; /* Efekt hover dla wierszy */
+}
+
+.adlist-table tr:nth-child(even) {
+    background-color: #1b1b1b; /* Alternatywne wiersze */
+}
+
+/* Przyciski w tabeli */
+.adlist-btn {
+    padding: 8px 12px;
+    background-color: #ffa500;
+    border: none;
+    color: #000;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.adlist-btn:hover {
+    background-color: #ffc04d;
+}
+
+/* Opcje filtrowania */
+.filter-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    background-color: #2e2e2e;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.filter-options label {
+    font-size: 1em;
+    color: #fff;
+}
+
+.filter-options input {
+    padding: 10px;
+    width: 50%;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: #1e1e1e;
+    color: #fff;
+}
+
+.filter-options button {
+    padding: 10px 20px;
+    background-color: #ffa500;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.filter-options button:hover {
+    background-color: #ffc04d;
+}
+/* Inputy - adlist-address i adlist-comment */
+#adlist-address,
+#adlist-comment {
+    padding: 10px;
+    width: 50%;
+    border: 1px solid #333; /* Ciemna ramka */
+    border-radius: 5px;
+    background-color: #1e1e1e; /* Ciemne tło */
+    color: #fff; /* Biały tekst */
+}
+
+/* Przyciski - zmieniony kolor tła i obramowania */
+.adlist-table button {
+    padding: 10px 20px;
+    background-color: #2e2e2e; /* Ciemne tło */
+    border: 1px solid #333; /* Ciemna ramka */
+    color: white; /* Biały tekst */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+}
+
+/* Efekt hover dla przycisków */
+.adlist-table button:hover {
+    background-color: #444; /* Jaśniejsze tło przy hover */
+}
+
+/* Show Entries - ID */
+#show-entries {
+    padding: 10px 20px;
+    background-color: #2e2e2e; /* Ciemne tło */
+    border: 1px solid #333; /* Ciemna ramka */
+    color: white; /* Biały tekst */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+/* Hover dla Show Entries */
+#show-entries:hover {
+    background-color: #444;
+}
+
+
+
+/* Input wyszukiwania - search-adlists */
+#search-adlists {
+    padding: 10px;
+    width: 50%;
+    border: 1px solid #333; /* Ciemna ramka */
+    border-radius: 5px;
+    background-color: #1e1e1e; /* Ciemne tło */
+    color: #fff; /* Biały tekst */
+}
+
+/* Przyciski w pagination-controls */
+.pagination-controls button {
+    padding: 10px 20px;
+    background-color: #2e2e2e; /* Ciemne tło */
+    border: 1px solid #333; /* Ciemna ramka */
+    color: white; /* Biały tekst */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+    margin: 0 5px; /* Odstępy między przyciskami */
+}
+
+/* Hover dla przycisków w pagination-controls */
+.pagination-controls button:hover {
+    background-color: #444; /* Jaśniejsze tło przy hover */
 }
 
 
