@@ -3,11 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prone</title>
+    <title>Manage Filter Lists</title>
     <link rel="stylesheet" href="../styles/style.css">
-    <link rel="icon" href="img/logo.png" type="image/png">
 </head>
 <body>
-    
+    <!-- Sidebar navigation -->
+    <div class="sidebar">
+        <div class="logo">
+            <img src="../img/logo.png" alt="Prone Logo">
+            <p>Prone</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../en/index_en.html">Dashboard</a></li>
+                <li><a href="../en/query_log.html">Query Log</a></li>
+                <li><a href="../en/groups.html">Groups</a></li>
+                <li><a href="../en/adlists.html">Adlists</a></li>
+                <li><a href="../en/clients.html">Clients</a></li>
+                <li><a href="../en/domains.html">Domains</a></li>
+                <li><a href="../en/settings.html">Settings</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <h1>Manage Filter Lists</h1>
+
+        <!-- Add a new adlist section -->
+        <div class="add-adlist">
+            <h2>Add New List</h2>
+            <div class="adlist-form">
+                <label for="adlist-address">Address:</label>
+                <input type="text" id="adlist-address" placeholder="URL or addresses separated by space">
+
+                <label for="adlist-comment">Comment:</label>
+                <input type="text" id="adlist-comment" placeholder="List description (optional)">
+
+                <button type="button" class="add-button">Add</button>
+            </div>
+            <div class="hints">
+                <p><strong>Tips:</strong></p>
+                <ul>
+                    <li>Run <code>prone -g</code> or update the filter list online after making changes.</li>
+                    <li>Multiple lists can be added by separating each <strong>unique</strong> URL with a space.</li>
+                    <li>Click the icon in the first column to get additional information about your lists. Icons indicate the list's health status.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- List of adlists -->
+        <div class="list-adlists">
+            <h2>Filter Lists</h2>
+            <div class="table-controls">
+                <label for="show-entries">Show</label>
+                <select id="show-entries">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+                <span>entries</span>
+                <label for="search-adlists">Search:</label>
+                <input type="text" id="search-adlists" placeholder="Search...">
+            </div>
+            <table class="adlist-table">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="select-all"></th>
+                        <th>Address</th>
+                        <th>Status</th>
+                        <th>Comment</th>
+                        <th>Group Assignment</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><a href="#">https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts</a></td>
+                        <td><span class="status enabled">Enabled</span></td>
+                        <td>Imported from /etc/prone</td>
+                        <td>
+                            <select>
+                                <option value="none">not selected</option>
+                                <option value="group1">Group 1</option>
+                                <option value="group2">Group 2</option>
+                            </select>
+                        </td>
+                        <td><button class="delete-button">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="pagination">
+                <span>Showing 1 to 1 of 1 entry</span>
+                <div class="pagination-controls">
+                    <button>Previous</button>
+                    <button>1</button>
+                    <button>Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>Created by ACDIT Sp. z o.o.</p>
+    </footer>
 </body>
 </html>

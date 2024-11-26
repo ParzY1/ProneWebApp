@@ -3,11 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prone</title>
+    <title>Settings</title>
     <link rel="stylesheet" href="../styles/style.css">
-    <link rel="icon" href="../img/logo.png" type="image/png">
 </head>
 <body>
+
+    <!-- Sidebar navigation -->
+    <div class="sidebar">
+        <div class="logo">
+            <img src="../img/logo.png" alt="Prone Logo">
+            <p>Prone</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../en/index_en.html">Dashboard</a></li>
+                <li><a href="../en/query_log.html">Query Log</a></li>
+                <li><a href="../en/groups.html">Groups</a></li>
+                <li><a href="../en/clients.html">Clients</a></li>
+                <li><a href="../en/domains.html">Domains</a></li>
+                <li><a href="../en/adlists.html">Adlists</a></li>
+                <li><a href="../en/settings.html">Settings</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <h1>Settings</h1>
+
+        <!-- Upstream DNS Servers -->
+        <div class="dns-settings">
+            <h2>DNS Servers</h2>
+            <p>Select DNS servers for outgoing queries:</p>
+            <table class="dns-table">
+                <thead>
+                    <tr>
+                        <th>IPv4</th>
+                        <th>IPv6</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox"></td>
+                        <td>Google (ECS, DNSSEC)</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox"></td>
+                        <td>OpenDNS (ECS, DNSSEC)</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox"></td>
+                        <td>Level3</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox"></td>
+                        <td>Comodo</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox"></td>
+                        <td>DNS.WATCH (DNSSEC)</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox"></td>
+                        <td>Quad9 (filtered, ECS, DNSSEC)</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox"></td>
+                        <td>Quad9 (unfiltered, ECS, no DNSSEC)</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox"></td>
+                        <td>Cloudflare (DNSSEC)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="dns-note">
+                <strong>Note:</strong> ECS (Extended Client Subnet) defines a mechanism for sending anonymized client IP addresses to authoritative DNS servers in order to get geolocated responses.
+            </p>
+        </div>
+
+        <!-- Interface settings -->
+        <div class="interface-settings">
+            <h2>Interface Settings</h2>
+            <form>
+                <div class="setting-option">
+                    <input type="radio" id="local-requests" name="interface-setting" checked>
+                    <label for="local-requests">Allow only local queries</label>
+                    <p class="description">Allows queries only from devices within the local network.</p>
+                </div>
+                <div class="setting-option">
+                    <input type="radio" id="specific-interface" name="interface-setting">
+                    <label for="specific-interface">Bind only to a specific interface</label>
+                </div>
+                <div class="setting-option">
+                    <input type="radio" id="permit-all" name="interface-setting">
+                    <label for="permit-all">Allow all queries</label>
+                    <p class="description warning">This option is risky on devices without proper network security measures.</p>
+                </div>
+            </form>
+        </div>
+    </div>
     
+    <footer class="footer">
+        Created by ACDIT Sp. z o.o.
+    </footer>
+
 </body>
 </html>
