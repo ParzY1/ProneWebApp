@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,19 +38,21 @@
             <input type="text" id="group-name" placeholder="Wpisz nazwę grupy">
             
             <label for="group-description">Opis:</label>
-            <textarea id="group-description" placeholder="Wpisz opis grupy"></textarea>
+            <input id="group-description" placeholder="Wpisz opis grupy">
+            <br>
 
+            <div class="tips">
+                <p><strong>Wskazówki:</strong></p>
+                <ul>
+                    <li> Można dodać wiele grup, oddzielając każdą nazwę grupy spacją.</li>
+                    <li> Nazwa grup może zawierać spacje, jeśli jest wprowadzona w cudzysłowie. Np. "Moja nowa grupa".</li>
+                </ul>
+            </div>
+            <br>
             <button class="add-btn">Dodaj</button>
         </div>
 
-        <!-- Wskazówki -->
-        <div class="instructions">
-            <p><strong>Wskazówki:</strong></p>
-            <ul>
-                <li>1. Można dodać wiele grup, oddzielając każdą nazwę grupy spacją.</li>
-                <li>2. Nazwa grup może zawierać spacje, jeśli jest wprowadzona w cudzysłowie. Np. "Moja nowa grupa".</li>
-            </ul>
-        </div>
+
 
         <!-- Lista grup i paginacja -->
         <section class="group-list">
@@ -149,8 +151,8 @@
                         </label>
                     </td>
                     <td>
-                        <button class="edit-btn">Edit</button>
-                        <button class="delete-btn" data-group-name="${group.name}">Delete</button>
+                        <button class="edit-button">📝</button>
+                        <button class="delete-button" data-group-name="${group.name}">❌</button>
                     </td>`;
                 row.querySelector('.group-toggle').addEventListener('change', (event) => {
                     console.log('Toggle clicked:', event.target.checked);

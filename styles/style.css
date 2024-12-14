@@ -73,7 +73,7 @@ html, body {
 h1 {
     font-size: 2em;
     margin-bottom: 20px;
-    color: #ffa500; /* Pomarańczowy akcent */
+    color:#ffa500/* Pomarańczowy akcent */
 }
 
 /* Kafelki */
@@ -103,7 +103,7 @@ h1 {
     background-color: #2e2e2e; /* Ciemniejsze tło */
     padding: 15px;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+ 
 }
 /* Notatka */
 .note {
@@ -160,7 +160,7 @@ h1 {
     padding: 15px;
     background-color: #1b1b1b; /* Dostosowane do sidebaru */
     color: #ffa500;
-    position: relative;
+    position: fixed;
     bottom: 0;
     width: 100%;
     font-size: 1em;
@@ -214,7 +214,7 @@ h1 {
     background-color: #1e1e1e;
     padding: 15px;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  
 }
 
 .filter-options label {
@@ -270,21 +270,23 @@ h1 {
     margin-top: 10px;
 }
 
-.input-section input, .input-section textarea {
-    width: 100%;
+.input-section input{
+    width: 20%;
     padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 15px;
+  
+
     border: 1px solid #333;
     border-radius: 5px;
-    background-color: #2e2e2e;
+    background-color: #1e1e1e;
     color: white;
 }
 
 .add-btn {
     background-color: #ffa500;
     color: black;
+    margin-top:10px;
     padding: 10px 20px;
+    margin-left:1500px;
     border: none;
     cursor: pointer;
     border-radius: 5px;
@@ -372,7 +374,7 @@ h1 {
 
 .add-client-section h2 {
     font-size: 1.8em;
-    color: #ffa500; /* Pomarańczowy nagłówek */
+    color: white; /* Pomarańczowy nagłówek */
     margin-bottom: 15px;
 }
 
@@ -385,15 +387,16 @@ h1 {
 .input-group input {
     padding: 12px;
     margin-bottom: 15px;
-    background-color: #2e2e2e;
+    background-color: #1e1e1e;
     color: #fff;
     border: 1px solid #333;
     border-radius: 5px;
 }
 
 .add-button {
-    padding: 12px 20px;
+    padding: 10px 20px;
     background-color: #ffa500;
+    margin-left:1500px;
     color: black;
     border: none;
     border-radius: 5px;
@@ -408,26 +411,18 @@ h1 {
 /* Tabela z klientami */
 .clients-list-section {
     background-color: #2e2e2e; /* Tło tabeli */
+    color: white;
     padding: 20px;
     border-radius: 8px;
 }
 
 .clients-list-section h2 {
+    color: white;
     font-size: 1.8em;
-    color: #ffa500;
+   
     margin-bottom: 20px;
 }
 
-.filter-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    background-color: #1e1e1e;
-    padding: 12px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
 
 .filter-options label {
     font-size: 1em;
@@ -464,16 +459,6 @@ h1 {
 
 .clients-table tr:nth-child(even) {
     background-color: #1e1e1e;
-}
-
-.clients-table button {
-    padding: 8px 15px;
-    background-color: #ffa500;
-    border: none;
-    color: #000;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
 }
 
 .clients-table button:hover {
@@ -545,7 +530,7 @@ h1 {
 .add-domain h2 {
     font-size: 22px;
     margin-bottom: 10px;
-    color: #ffa500; /* Pomarańczowy kolor */
+    color: white; /* Pomarańczowy kolor */
 }
 
 .add-domain label {
@@ -558,7 +543,7 @@ h1 {
 
 .add-domain input,
 .add-domain select {
-    width: 100%;
+    width: 30%;
     padding: 10px;
     margin-bottom: 15px;
     font-size: 16px;
@@ -572,6 +557,7 @@ h1 {
     background-color: #ffa500; /* Pomarańczowe tło przycisków */
     color: black; /* Czarny tekst */
     padding: 12px 20px;
+    margin-left:1480px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -583,7 +569,7 @@ h1 {
 }
 
 .add-domain .tips {
-    background-color: #1e1e1e;
+    background-color: #2e2e2e;
     padding: 15px;
     margin-top: 20px;
     border-radius: 8px;
@@ -611,11 +597,11 @@ h1 {
 .domain-list h2 {
     font-size: 22px;
     margin-bottom: 10px;
-    color: #ffa500; /* Pomarańczowy kolor */
+    color: white;
 }
-
 .domain-list table {
     width: 100%;
+    table-layout: fixed;
     border-collapse: collapse;
     font-size: 16px;
     margin-top: 20px;
@@ -757,14 +743,10 @@ h1 {
 
 /* Opcje filtrowania */
 .filter-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 15px;
-    background-color: #2e2e2e;
-    padding: 15px;
+    margin-top:30px;
+    background-color: #2e2e2e; /* Tło tabeli */
+    padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .filter-options label {
@@ -774,7 +756,7 @@ h1 {
 
 .filter-options input {
     padding: 10px;
-    width: 50%;
+    width: 35%;
     border: 1px solid #333;
     border-radius: 5px;
     background-color: #1e1e1e;
@@ -797,8 +779,9 @@ h1 {
 /* Inputy - adlist-address i adlist-comment */
 #adlist-address,
 #adlist-comment {
+    margin:10px;
     padding: 10px;
-    width: 50%;
+    width: 20%;
     border: 1px solid #333; /* Ciemna ramka */
     border-radius: 5px;
     background-color: #1e1e1e; /* Ciemne tło */
@@ -843,8 +826,9 @@ h1 {
 
 /* Input wyszukiwania - search-adlists */
 #search-adlists {
+    margin-left: 5px;
     padding: 10px;
-    width: 50%;
+    width: 10%;
     border: 1px solid #333; /* Ciemna ramka */
     border-radius: 5px;
     background-color: #1e1e1e; /* Ciemne tło */
@@ -943,8 +927,8 @@ input:checked + .slider:before {
 }
 
 .dropdown-button {
-    background-color: #f9f9f9;
-    color: black;
+    background-color: #1e1e1e;
+    color: white;
     padding: 10px;
     font-size: 14px;
     border: none;
@@ -954,7 +938,8 @@ input:checked + .slider:before {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: #1e1e1e;
+    color: white;
     min-width: 150px;
     box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
     z-index: 1;

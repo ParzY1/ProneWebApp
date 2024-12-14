@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zarządzanie Domenami</title>
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="icon" href="../img/logo.png" type="image/png">
 </head>
 <body>
     <!-- Sidebar navigation -->
@@ -44,15 +45,14 @@
                 <option value="blocked">Zablokowane</option>
             </select>
 
-            <button class="btn">Dodaj</button>
-
             <div class="tips">
                 <p><strong>Wskazówki:</strong></p>
                 <ul>
-                    <li>1. Można dodać wiele domen, oddzielając każdą nazwę domeny spacją.</li>
-                    <li>2. Nazwy domen mogą zawierać spacje, jeśli są wprowadzone w cudzysłowiu. Na przykład "example.com".</li>
+                    <li>Można dodać wiele domen, oddzielając każdą nazwę domeny spacją.</li>
+                    <li>Nazwy domen mogą zawierać spacje, jeśli są wprowadzone w cudzysłowiu. Na przykład "example.com".</li>
                 </ul>
             </div>
+            <button class="btn">Dodaj</button>
         </section>
 
         <section class="domain-list">
@@ -68,6 +68,9 @@
                     </tr>
                 </thead>
                 <tbody class="whitelist-table">
+                    <tr>
+                        <td colspan="4">Ładowanie domen...</td>
+                    </tr>
                     
                 </tbody>
             </table>
@@ -86,11 +89,14 @@
                     </tr>
                 </thead>
                 <tbody class="blacklist-table">
-                    
+                    <tr>
+                        <td colspan="4">Ładowanie domen...</td>
+                    </tr>
                 </tbody>
             </table>
         </section>
     </div>
+
     <footer>
         Created by ACDIT Sp. z o.o.
     </footer>
@@ -183,14 +189,14 @@
             const actionsCell = document.createElement('td');
             // (Existing Edit/Delete Buttons)
             const editButton = document.createElement('button');
-            editButton.textContent = '✏️ Edytuj';
-            editButton.classList.add('btn', 'edit');
+            editButton.textContent = '📝';
+            editButton.classList.add('edit-button');
             editButton.addEventListener('click', () => toggleEdit(row, domain));
             actionsCell.appendChild(editButton);
 
             const deleteButton = document.createElement('button');
-            deleteButton.textContent = '❌ Usuń';
-            deleteButton.classList.add('btn', 'delete');
+            deleteButton.textContent = '❌';
+            deleteButton.classList.add('delete-button');
             deleteButton.addEventListener('click', () => deleteDomain(row, domain, actionType));
             actionsCell.appendChild(deleteButton);
 

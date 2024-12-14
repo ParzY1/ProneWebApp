@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zarządzanie listami filtrów</title>
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="icon" href="../img/logo.png" type="image/png">
 </head>
 <body>
     <!-- Sidebar navigation -->
@@ -36,11 +37,10 @@
             <div class="adlist-form">
                 <label for="adlist-address">Adres:</label>
                 <input type="text" id="adlist-address" placeholder="URL lub adresy oddzielone spacją">
-
                 <label for="adlist-comment">Komentarz:</label>
-                <input type="text" id="adlist-comment" placeholder="Opis listy (opcjonalne)">
+                <input type="text" id="adlist-comment" placeholder="Opis listy (opcjonalne)"><br>
 
-                <button type="button" class="add-button">Dodaj</button>
+
             </div>
             <div class="hints">
                 <p><strong>Wskazówki:</strong></p>
@@ -50,6 +50,7 @@
                     <li>Kliknij ikonę w pierwszej kolumnie, aby uzyskać dodatkowe informacje o swoich listach. Ikony odpowiadają statusowi zdrowia listy.</li>
                 </ul>
             </div>
+            <button type="button" class="add-button">Dodaj</button>
         </div>
 
         <!-- List of adlists -->
@@ -94,7 +95,7 @@
                         <td><button class="delete-button">Usuń</button></td>
                     </tr>
                 </tbody>
-            </table>
+            </table><br>
             <div class="pagination">
                 <span>Wyświetlanie 1 do 1 z 1 wpisu</span>
                 <div class="pagination-controls">

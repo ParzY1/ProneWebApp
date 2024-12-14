@@ -42,13 +42,14 @@
                 <label for="comment">Komentarz:</label>
                 <input type="text" id="comment" placeholder="Wpisz komentarz">
             </div>
-            <p>Możesz wybrać istniejącego klienta lub dodać nowego, wpisując powyżej i potwierdzając enterem.
-            </p>
-            <p>
-                Klienci mogą być opisani poprzez adresy IP (IPv4 i IPv6 są obsługiwane), podsieci IP (notacja CIDR, np. 192.168.2.0/24), adresy MAC (np. 12:34:56:78:9A:BC), 
-                nazwy hostów (np. localhost) lub interfejsy, do których są podłączone (poprzedzone dwukropkiem, np. :eth0).
-
-            </p>
+            <div class="tips">
+                <p><strong>Wskazówki:</strong></p>
+                <ul>
+                    <li>Możesz wybrać istniejącego klienta lub dodać nowego, wpisując powyżej i potwierdzając enterem.</li>
+                    <li>Klienci mogą być opisani poprzez adresy IP (IPv4 i IPv6 są obsługiwane), podsieci IP (notacja CIDR, np. 192.168.2.0/24), adresy MAC (np. 12:34:56:78:9A:BC), </li>
+                    <li>nazwy hostów (np. localhost) lub interfejsy, do których są podłączone (poprzedzone dwukropkiem, np. :eth0).</li>
+                </ul>
+            </div>
             <button class="add-button">Dodaj</button>
         </div>
 
@@ -75,7 +76,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
+                    <tr>
+                        <td colspan="4">Ładowanie klientów...</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -173,8 +176,8 @@
                     <td>${client.ip}</td>
                     <td>${client.comment || 'Brak'}</td>
                     <td>
-                        <div class="group-dropdown">
-                            <button class="dropdown-btn">Grupy</button>
+                        <div class="dropdown-container">
+                            <button class="dropdown-button">Wybierz grupy</button>
                             <div class="dropdown-content">
                                 ${allGroups.map(group => `
                                     <label>
