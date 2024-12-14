@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zarządzanie listami filtrów</title>
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body>
+    <!-- Sidebar navigation -->
+    <div class="sidebar">
+        <div class="logo">
+            <img src="../img/logo.png" alt="Logo Prone">
+            <p>Prone</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/pl/dashboard">Ekran główny</a></li>
+                <li><a href="/pl/query_log">Logi zapytań</a></li>
+                <li><a href="/pl/groups">Grupy</a></li>
+                <li><a href="/pl/adlists" class="active">Lista filtrów</a></li>
+                <li><a href="/pl/clients">Klienci</a></li>
+                <li><a href="/pl/domains">Domeny</a></li>
+                <li><a href="/pl/settings">Ustawienia</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <h1>Zarządzanie listami filtrów</h1>
+
+        <!-- Add a new adlist section -->
+        <div class="add-adlist">
+            <h2>Dodaj nową listę</h2>
+            <div class="adlist-form">
+                <label for="adlist-address">Adres:</label>
+                <input type="text" id="adlist-address" placeholder="URL lub adresy oddzielone spacją">
+
+                <label for="adlist-comment">Komentarz:</label>
+                <input type="text" id="adlist-comment" placeholder="Opis listy (opcjonalne)">
+
+                <button type="button" class="add-button">Dodaj</button>
+            </div>
+            <div class="hints">
+                <p><strong>Wskazówki:</strong></p>
+                <ul>
+                    <li>Uruchom <code>prone -g</code> lub zaktualizuj listę filtrów online po wprowadzeniu zmian.</li>
+                    <li>Wiele list można dodać, oddzielając każdy <strong>unikalny</strong> adres URL spacją.</li>
+                    <li>Kliknij ikonę w pierwszej kolumnie, aby uzyskać dodatkowe informacje o swoich listach. Ikony odpowiadają statusowi zdrowia listy.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- List of adlists -->
+        <div class="list-adlists">
+            <h2>Lista filtrów</h2>
+            <div class="table-controls">
+                <label for="show-entries">Wyświetl</label>
+                <select id="show-entries">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+                <span>wpisów</span>
+                <label for="search-adlists">Szukaj:</label>
+                <input type="text" id="search-adlists" placeholder="Szukaj...">
+            </div>
+            <table class="adlist-table">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="select-all"></th>
+                        <th>Adres</th>
+                        <th>Status</th>
+                        <th>Komentarz</th>
+                        <th>Przypisanie do grupy</th>
+                        <th>Akcje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><a href="#">https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts</a></td>
+                        <td><span class="status enabled">Włączone</span></td>
+                        <td>Zaimportowano z /etc/prone</td>
+                        <td>
+                            <select>
+                                <option value="none">nie wybrano</option>
+                                <option value="group1">Grupa 1</option>
+                                <option value="group2">Grupa 2</option>
+                            </select>
+                        </td>
+                        <td><button class="delete-button">Usuń</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="pagination">
+                <span>Wyświetlanie 1 do 1 z 1 wpisu</span>
+                <div class="pagination-controls">
+                    <button>Poprzednia</button>
+                    <button>1</button>
+                    <button>Następna</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>Created by ACDIT Sp. z o.o.</p>
+    </footer>
+</body>
+</html>

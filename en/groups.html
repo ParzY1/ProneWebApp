@@ -17,13 +17,13 @@
         </div>
         <nav>
             <ul>
-                <li><a href="../en/index_en.html">Dashboard</a></li>
-                <li><a href="../en/query_log.html">Query Log</a></li>
-                <li><a href="../en/groups.html">Groups</a></li>
-                <li><a href="../en/clients.html">Clients</a></li>
-                <li><a href="../en/domains.html">Domains</a></li>
-                <li><a href="../en/adlists.html">Adlists</a></li>
-                <li><a href="../en/settings.html">Settings</a></li>
+                <li><a href="/en/dashboard">Dashboard</a></li>
+                <li><a href="/en/query_log">Query Log</a></li>
+                <li><a href="/en/groups">Groups</a></li>
+                <li><a href="/en/adlists">Adlists</a></li>
+                <li><a href="/en/clients">Clients</a></li>
+                <li><a href="/en/domains">Domains</a></li>
+                <li><a href="/en/settings">Settings</a></li>
             </ul>
         </nav>
     </div>
@@ -104,4 +104,124 @@
     </footer>
 
 </body>
+<script>
+    const API_BASE_URL = '/groups';
+
+    // Fetch groups and populate the table
+    const fetchGroups = async () => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/getGroups`, {
+                headers: { Authorization: `Bearer ${getCookie('accessToken')}` },
+            });
+            if (!response.ok) {
+                throw new Error('Failed to fetch groups');
+            }
+            const groups = await response.json();
+            populateGroupTable(groups);
+        } catch (error) {
+            console.error('Error fetching groups:', error);
+            alert('Nie udało się załadować grup.');
+        }
+    };
+
+    // Populate the group table
+    const populateGroupTable = (groups) => {
+        const tableBody = document.querySelector('.group-table tbody');
+        tableBody.innerHTML = '';
+        groups.forEach(({ name, description, enabled }) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${name}</td>
+                <td>${description || 'Brak opisu'}</td>
+                <td>${enabled ? 'Włączona' : 'Wyłączona'}</td>
+                <td>
+                    <button class="edit-btn" data-name="${name}">Edytuj</button>
+                    <button class="delete-btn" data-name="${name}">Usuń</button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+        addTableEventListeners();
+    };
+
+    // Add a group
+    document.querySelector('.add-btn').addEventListener('click', async () => {
+        const name = document.getElementById('group-name').value.trim();
+        const description = document.getElementById('group-description').value.trim();
+
+        if (!name) {
+            alert('Nazwa grupy jest wymagana.');
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_BASE_URL}/addGroup`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${getCookie('accessToken')}`,
+                },
+                body: JSON.stringify({ name, description }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to add group');
+            }
+
+            alert('Grupa została dodana.');
+            fetchGroups();
+        } catch (error) {
+            console.error('Error adding group:', error);
+            alert('Nie udało się dodać grupy.');
+        }
+    });
+
+    // Delete a group
+    const deleteGroup = async (name) => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/deleteGroup`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${getCookie('accessToken')}`,
+                },
+                body: JSON.stringify({ name }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to delete group');
+            }
+
+            alert('Grupa została usunięta.');
+            fetchGroups();
+        } catch (error) {
+            console.error('Error deleting group:', error);
+            alert('Nie udało się usunąć grupy.');
+        }
+    };
+
+    // Add event listeners for table buttons
+    const addTableEventListeners = () => {
+        document.querySelectorAll('.delete-btn').forEach((button) =>
+            button.addEventListener('click', () => {
+                const name = button.getAttribute('data-name');
+                if (confirm(`Czy na pewno chcesz usunąć grupę "${name}"?`)) {
+                    deleteGroup(name);
+                }
+            })
+        );
+
+        // Add similar listeners for "edit" buttons here if needed
+    };
+
+    // Helper: Get cookie value by name
+    const getCookie = (name) => {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    };
+
+    // Initialize
+    fetchGroups();
+</script>
 </html>

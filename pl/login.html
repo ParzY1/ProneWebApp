@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logowanie</title>
+    <link rel="stylesheet" href="../styles/stylelog.css">
+</head>
+<body>
+    <!-- Container for login form -->
+    <div class="login-container">
+        <img src="../img/logo.png" alt="Logo">
+        <h1>Prone</h1>
+        <form id="login-form">
+            <input type="text" id="identifier" placeholder="Login" required>
+            <input type="password" id="password" placeholder="Hasło" required>
+            <label>
+                <input type="checkbox" id="remember-me">
+                Zapamiętaj mnie (7 dni)
+            </label>
+            <button type="submit">Zaloguj się</button>
+        </form>
+        <a href="#">Zapomniałeś hasła?</a>
+    </div>
+
+    <!-- Language selector in the top right corner -->
+    <div class="language-selector">
+        <img src="../img/pl.png" alt="Polski" class="language-icon" id="pl" title="Polski">
+        <img src="../img/uk.png" alt="English" class="language-icon" id="en" title="English">
+    </div>
+</body>
+
+<script>
+    document.getElementById('login-form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const identifier = document.getElementById('identifier').value;
+        const password = document.getElementById('password').value;
+        const rememberMe = document.getElementById('remember-me').checked;
+
+        try {
+            const response = await fetch('/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ identifier, password, rememberMe }),
+            });
+
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.error);
+            }
+
+            const language = window.location.pathname.includes('/pl/') ? 'pl' : 'en';
+            window.location.href = `/${language}/dashboard`;
+        } catch (error) {
+            console.error('Login failed:', error.message);
+            alert('Logowanie nie powiodło się. Spróbuj ponownie.');
+        }
+    });
+</script>
+</html>

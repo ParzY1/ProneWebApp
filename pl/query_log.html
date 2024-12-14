@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prone</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="icon" href="../img/logo.png" type="image/png">
+</head>
+<body>
+
+    <!-- Sidebar navigation -->
+    <div class="sidebar">
+        <div class="logo">
+            <img src="../img/logo.png" alt="Prone Logo">
+            <p>Prone</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/pl/dashboard">Ekran główny</a></li>
+                <li><a href="/pl/query_log">Logi zapytań</a></li>
+                <li><a href="/pl/groups">Grupy</a></li>
+                <li><a href="/pl/adlists">Lista filtrów</a></li>
+                <li><a href="/pl/clients">Klienci</a></li>
+                <li><a href="/pl/domains">Domeny</a></li>
+                <li><a href="/pl/settings">Ustawienia</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <h1>Logi zapytań</h1>
+
+        <!-- Filtering options -->
+        <div class="filter-options">
+            <label for="filter-client">Filtruj przez Klientów:</label>
+            <input type="text" id="filter-client" placeholder="Enter Client IP...">
+            
+            <label for="filter-domain">Filtruj przez domeny:</label>
+            <input type="text" id="filter-domain" placeholder="Enter Domain...">
+        </div>
+
+        <table class="query-table">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Type</th>
+                    <th>Domain</th>
+                    <th>Client</th>
+                    <th>Status</th>
+                    <th>Reply Type</th>
+                    <th>Time Taken</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+        </table>
+
+        <!-- Note about logging -->
+        <div class="note">
+            <p>Uwaga: Zapytania dotyczące Prone i nazwy hosta nigdy nie są logowane.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        Created by ACDIT Sp. z o.o.
+    </footer>
+
+</body>
+</html>

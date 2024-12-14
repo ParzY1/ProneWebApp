@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prone</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="icon" href="../img/logo.png" type="image/png">
+</head>
+<body>
+
+    <!-- Sidebar navigation -->
+    <div class="sidebar">
+        <div class="logo">
+            <img src="../img/logo.png" alt="Prone Logo">
+            <p>Prone</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/pl/dashboard">Ekran główny</a></li>
+                <li><a href="/pl/query_log">Logi zapytań</a></li>
+                <li><a href="/pl/groups">Grupy</a></li>
+                <li><a href="/pl/adlists">Lista filtrów</a></li>
+                <li><a href="/pl/clients">Klienci</a></li>
+                <li><a href="/pl/domains">Domeny</a></li>
+                <li><a href="/pl/settings">Ustawienia</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <h1>Dodaj grupy</h1>
+
+        <!-- Formularz dodawania grupy -->
+        <div class="input-section">
+            <label for="group-name">Nazwa grupy:</label>
+            <input type="text" id="group-name" placeholder="Wpisz nazwę grupy">
+            
+            <label for="group-description">Opis:</label>
+            <textarea id="group-description" placeholder="Wpisz opis grupy"></textarea>
+
+            <button class="add-btn">Dodaj</button>
+        </div>
+
+        <!-- Wskazówki -->
+        <div class="instructions">
+            <p><strong>Wskazówki:</strong></p>
+            <ul>
+                <li>1. Można dodać wiele grup, oddzielając każdą nazwę grupy spacją.</li>
+                <li>2. Nazwa grup może zawierać spacje, jeśli jest wprowadzona w cudzysłowie. Np. "Moja nowa grupa".</li>
+            </ul>
+        </div>
+
+        <!-- Lista grup i paginacja -->
+        <section class="group-list">
+            <h2>Lista grup</h2>
+            <div class="pagination">
+                <label for="records-per-page">Pokaż:</label>
+                <select id="records-per-page">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                </select>
+                <span>rekordów</span>
+            </div>
+
+            <!-- Tabela grup -->
+            <table class="group-table">
+                <thead>
+                    <tr>
+                        <th>Nazwa</th>
+                        <th>Opis</th>
+                        <th>Status</th>
+                        <th>Akcje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="4">Ładowanie grup...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Note about logging -->
+        <div class="note">
+            <p>Uwaga: Zapytania dotyczące Prone i nazwy hosta nigdy nie są logowane.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        Created by ACDIT Sp. z o.o.
+    </footer>
+
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        await fetchGroups();
+    
+        document.querySelector('.group-table').addEventListener('click', async (event) => {
+            const editButton = event.target.closest('.edit-btn');
+            const doneButton = event.target.closest('.done-btn');
+            const deleteButton = event.target.closest('.delete-btn');
+            const toggle = event.target.closest('.group-toggle');
+
+            if (editButton) {
+                enableEditMode(editButton.closest('tr'));
+            }
+
+            if (doneButton) {
+                await handleEditDone(doneButton.closest('tr'));
+            }
+
+            if (deleteButton) {
+                const groupName = deleteButton.dataset.groupName;
+                await handleDeleteGroup(groupName, deleteButton.closest('tr'));
+            }
+
+            if (toggle) {
+                const groupName = toggle.dataset.groupName;
+                const isEnabled = toggle.checked;
+
+                await toggleGroupStatus(groupName, isEnabled);
+            }
+        });
+    });
+    
+    // Fetch groups and populate the table
+    async function fetchGroups() {
+        try {
+            const response = await fetch('/groups/getGroups');
+            if (!response.ok) throw new Error('Failed to load groups');
+    
+            const { data } = await response.json();
+            const tableBody = document.querySelector('.group-table tbody');
+            tableBody.innerHTML = '';
+    
+            data.forEach((group) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="group-name">${group.name}</td>
+                    <td class="group-description">${group.description}</td>
+                    <td>
+                        <label class="switch">
+                            <input type="checkbox" class="group-toggle" data-group-name="${group.name}" ${group.enabled ? 'checked' : ''}>
+                            <span class="slider round"></span>
+                        </label>
+                    </td>
+                    <td>
+                        <button class="edit-btn">Edit</button>
+                        <button class="delete-btn" data-group-name="${group.name}">Delete</button>
+                    </td>`;
+                row.querySelector('.group-toggle').addEventListener('change', (event) => {
+                    console.log('Toggle clicked:', event.target.checked);
+                    toggleGroupStatus(group.name, event.target.checked);
+                });
+                tableBody.appendChild(row);
+            });
+        } catch (error) {
+            console.error(error.message);
+            alert('Failed to load groups.');
+        }
+    }
+    
+    // Enable edit mode for a row
+    function enableEditMode(row) {
+        const nameCell = row.querySelector('.group-name');
+        const descCell = row.querySelector('.group-description');
+        const actionCell = row.querySelector('td:last-child');
+    
+        const originalName = nameCell.textContent.trim();
+        const originalDescription = descCell.textContent.trim();
+    
+        nameCell.innerHTML = `<input type="text" class="edit-name" value="${originalName}">`;
+        descCell.innerHTML = `<input type="text" class="edit-description" value="${originalDescription}">`;
+    
+        actionCell.innerHTML = `
+            <button class="done-btn" data-original-name="${originalName}" data-original-description="${originalDescription}">Done</button>`;
+    }
+    
+    // Handle Done button click and send requests
+    async function handleEditDone(row) {
+        const nameInput = row.querySelector('.edit-name');
+        const descInput = row.querySelector('.edit-description');
+        const actionCell = row.querySelector('td:last-child');
+    
+        const originalName = actionCell.querySelector('.done-btn').dataset.originalName;
+        const originalDescription = actionCell.querySelector('.done-btn').dataset.originalDescription;
+    
+        const newName = nameInput.value.trim();
+        const newDescription = descInput.value.trim();
+    
+        const promises = [];
+        let hasChanges = false;
+    
+        // If the name has changed, send a request to update it
+        if (newName !== originalName) {
+            hasChanges = true;
+            promises.push(
+                fetch('/groups/editGroupName', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ oldName: originalName, newName }),
+                })
+            );
+        }
+    
+        // If the description has changed, send a request to update it
+        if (newDescription !== originalDescription) {
+            hasChanges = true;
+            promises.push(
+                fetch('/groups/editGroupDescription', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name: newName, description: newDescription }),
+                })
+            );
+        }
+    
+        // Send the requests
+        try {
+            if (hasChanges) {
+                await Promise.all(promises);
+                alert('Group updated successfully!');
+            } else {
+                alert('No changes detected.');
+            }
+    
+            // Return the row to its original state
+            nameInput.parentElement.textContent = newName;
+            descInput.parentElement.textContent = newDescription;
+            actionCell.innerHTML = '<button class="edit-btn">Edit</button>';
+        } catch (error) {
+            console.error('Error updating group:', error);
+            alert('Failed to update group.');
+        }
+    }
+
+    async function handleDeleteGroup(groupName, row) {
+        if (!confirm(`Are you sure you want to delete the group "${groupName}"?`)) {
+            return;
+        }
+
+        try {
+            const response = await fetch('/groups/deleteGroup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name: groupName }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to delete group');
+            }
+
+            alert('Group deleted successfully!');
+            row.remove(); // Remove the row from the table
+        } catch (error) {
+            console.error('Error deleting group:', error);
+            alert('Failed to delete group.');
+        }
+    };
+
+    async function toggleGroupStatus(groupName, isEnabled) {
+        const url = `/groups/${isEnabled ? 'enableGroup' : 'disableGroup'}`;
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name: groupName }),
+        });
+        if (!response.ok) {
+            throw new Error(`Failed to ${isEnabled ? 'enable' : 'disable'} group.`);
+        }
+        return response.json();
+    };
+</script>       
+</html>
