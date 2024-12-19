@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prone Dashboard</title>
     <link rel="stylesheet" href="../styles/style.css">
-
     <link rel="icon" href="../img/logo.png" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="sidebar">
@@ -31,19 +31,155 @@
         <h1>Prone Dashboard</h1>
 
         <div class="dashboard-tiles">
-            <div class="tile">Liczba zapytań</div>
-            <div class="tile">Blokowane zapytania</div>
-            <div class="tile">Domeny na liście</div>
+            <div class="tile" id="dns-queries">Liczba zapytań: <span>-</span></div>
+            <div class="tile" id="ads-blocked">Blokowane zapytania: <span>-</span></div>
+            <div class="tile" id="ads-percentage">Procent blokowanych: <span>-</span></div>
+            <div class="tile" id="domains-blocked">Domeny na liście: <span>-</span></div>
         </div>
 
         <div class="charts">
-            <div class="chart">Wykres zapytań</div>
-            <div class="chart">Aktywność klientów</div>
+            <div class="chart">
+                <canvas id="topClientsChart"></canvas>
+            </div>
+            <div class="chart">
+                <canvas id="topDomainsChart"></canvas>
+            </div>
         </div>
     </div>
 
     <footer class="footer">
         Created by ACDIT Sp. z o.o.
     </footer>
+
+    <script>
+        // Fetch and render summary data
+        const fetchSummary = async () => {
+            try {
+                const response = await fetch('/dashboard/summary');
+                if (!response.ok) throw new Error('Failed to fetch summary data');
+
+                const data = await response.json();
+
+                document.getElementById('dns-queries').querySelector('span').textContent = data.dnsQueriesToday || '0';
+                document.getElementById('ads-blocked').querySelector('span').textContent = data.adsBlockedToday || '0';
+                document.getElementById('ads-percentage').querySelector('span').textContent = `${data.adsPercentageToday || '0.0'}%`;
+                document.getElementById('domains-blocked').querySelector('span').textContent = data.domainsBlocked || '0';
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+                alert('Nie udało się załadować danych dashboardu. Spróbuj ponownie później.');
+            }
+        };
+
+        // Fetch and render top clients chart
+        const renderTopClientsChart = async () => {
+            try {
+                const response = await fetch('/dashboard/top-clients');
+                if (!response.ok) throw new Error('Failed to fetch top clients data');
+
+                const data = await response.json();
+                const topSources = data.top_sources;
+
+                // Extract labels (IPs) and data (query counts)
+                const labels = Object.keys(topSources);
+                const counts = Object.values(topSources);
+
+                // Create Chart.js bar chart
+                const ctx = document.getElementById('topClientsChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Zapytania klientów',
+                            data: counts,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            title: {
+                                display: false,
+                                text: 'Zapytania klientów'
+                            },
+                        },
+                        scales: {
+                            y: {
+                                title: {
+                                    display: false,
+                                },
+                                beginAtZero: true
+                            },
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error loading top clients data:', error);
+                alert('Nie udało się załadować danych zapytań klientów.');
+            }
+        };
+
+        const renderTopDomainsChart = async () => {
+            try {
+                const response = await fetch('/dashboard/top-domains');
+                if (!response.ok) throw new Error('Failed to fetch top domains data');
+
+                const data = await response.json();
+                const topQueries = data.top_queries;
+                const topAds = data.top_ads;
+
+                // Process data
+                const labels = Object.keys(topQueries);
+                const queryCounts = Object.values(topQueries);
+                const adCounts = labels.map(domain => topAds[domain] || 0);
+
+                const ctx = document.getElementById('topDomainsChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Zapytania',
+                                data: queryCounts,
+                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                borderWidth: 1
+                            },
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            title: { display: false }
+                        },
+                        scales: {
+                            y: {
+                                title: { display: false, text: 'Liczba' },
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error loading top domains data:', error);
+                alert('Nie udało się załadować danych zapytań domen.');
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchSummary();
+            renderTopClientsChart();
+            renderTopDomainsChart();
+        });
+    </script>
 </body>
 </html>

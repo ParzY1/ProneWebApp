@@ -52,7 +52,7 @@
                     <li>Nazwy domen mogą zawierać spacje, jeśli są wprowadzone w cudzysłowiu. Na przykład "example.com".</li>
                 </ul>
             </div>
-            <button class="btn">Dodaj</button>
+            <button class="add-button">Dodaj</button>
         </section>
 
         <section class="domain-list">
@@ -106,7 +106,7 @@
     document.addEventListener('DOMContentLoaded', async () => {
     const whitelistTable = document.querySelector('.whitelist-table');
     const blacklistTable = document.querySelector('.blacklist-table');
-    const addButton = document.querySelector('.btn');
+    const addButton = document.querySelector('.add-button');
     const domainInput = document.querySelector('#domain');
     const commentInput = document.querySelector('#comment');
     const statusSelect = document.querySelector('#status');
@@ -209,10 +209,9 @@
     const toggleEdit = (row, domain) => {
         const domainCell = row.querySelector('.domain-text');
         const commentCell = row.querySelector('.comment-text');
-        const actionsCell = row.querySelector('td:last-child');
+        const editButton = row.querySelector('.edit-button');
 
         if (row.classList.contains('editing')) {
-            // Save mode
             const newDomain = domainCell.querySelector('input').value;
             const newComment = commentCell.querySelector('input').value;
 
@@ -222,11 +221,9 @@
 
             domainCell.textContent = newDomain;
             commentCell.textContent = newComment;
-
-            actionsCell.querySelector('.edit').textContent = '✏️ Edytuj';
+            editButton.textContent = '📝';
             row.classList.remove('editing');
         } else {
-            // Edit mode
             const domainInput = document.createElement('input');
             domainInput.type = 'text';
             domainInput.value = domain.domain;
@@ -241,7 +238,7 @@
             commentCell.textContent = '';
             commentCell.appendChild(commentInput);
 
-            actionsCell.querySelector('.edit').textContent = '✔️ Zapisz';
+            editButton.textContent = '✔️';
             row.classList.add('editing');
         }
     };

@@ -396,7 +396,7 @@ h1 {
 .add-button {
     padding: 10px 20px;
     background-color: #ffa500;
-    margin-left:1500px;
+    margin-left: 5px;
     color: black;
     border: none;
     border-radius: 5px;
@@ -948,4 +948,39 @@ input:checked + .slider:before {
 
 .dropdown-container:hover .dropdown-content {
     display: block;
+}
+
+.pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.pagination button {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    background: #f0f0f0;
+    cursor: pointer;
+}
+
+.pagination button:hover {
+    background: #ddd;
+}
+
+.pagination button.active {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+}
+
+.pagination button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
 }

@@ -4,6 +4,9 @@ const bodyParser = require('body-parser');
 const groupRoutes = require('./routes/groupRoutes');
 const clientRoutes = require('./routes/clientRoutes');
 const domainRoutes = require('./routes/domainRoutes');
+const queryRoutes = require('./routes/queryRoutes');
+const dashboardRoutes = require('./routes/dashboardRoutes');
+const adlistRoutes = require('./routes/adlistRoutes');
 const cookieParser = require('cookie-parser');
 const { loginHandler } = require('./middlewares/auth');
 
@@ -25,6 +28,9 @@ app.post('/api/login', loginHandler);
 app.use('/groups', groupRoutes);
 app.use('/clients', clientRoutes);
 app.use('/domains', domainRoutes);
+app.use('/adlists', adlistRoutes);
+app.use('/logs', queryRoutes);
+app.use('/dashboard', dashboardRoutes);
 
 // Polish Routes
 app.get('/pl/:page', (req, res) => {
