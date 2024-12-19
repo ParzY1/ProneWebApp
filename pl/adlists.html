@@ -41,7 +41,7 @@
                 <label for="adlist-comment">Komentarz:</label>
                 <input type="text" id="adlist-comment" placeholder="Opis listy (opcjonalne)"><br>
             </div>
-            <button type="button" id="add-adlist-button">Dodaj</button>
+            <button type="button" id="add-adlist-button" class="add-button">Dodaj</button>
         </div>
     
         <!-- List of adlists -->
@@ -89,7 +89,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             fetchAdlists();
     
-            const addAdlistButton = document.getElementById('add-adlist-button');
+            const addAdlistButton = document.querySelector('.add-button');
             addAdlistButton.addEventListener('click', async () => {
                 const address = document.getElementById('adlist-address').value;
                 const comment = document.getElementById('adlist-comment').value;
@@ -176,9 +176,9 @@
                         row.innerHTML += `<td>${dropdownContainer.outerHTML}</td>`;
                         row.innerHTML += `
                             <td>
-                                <button class="edit-button" data-address="${adlist.address}">Edytuj</button>
-                                <button class="done-button" data-address="${adlist.address}" style="display:none;">Gotowe</button>
-                                <button class="delete-button" data-address="${adlist.address}">Usuń</button>
+                                <button class="edit-button" data-address="${adlist.address}">📝</button>
+                                <button class="done-button" data-address="${adlist.address}" style="display:none;">✔️</button>
+                                <button class="delete-button" data-address="${adlist.address}">❌</button>
                             </td>
                         `;
 

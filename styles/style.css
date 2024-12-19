@@ -789,7 +789,7 @@ h1 {
 }
 
 /* Przyciski - zmieniony kolor tła i obramowania */
-.adlist-table button {
+.adlist-table .dropdown-button {
     padding: 10px 20px;
     background-color: #2e2e2e; /* Ciemne tło */
     border: 1px solid #333; /* Ciemna ramka */
@@ -801,7 +801,7 @@ h1 {
 }
 
 /* Efekt hover dla przycisków */
-.adlist-table button:hover {
+.adlist-table .dropdown-button:hover {
     background-color: #444; /* Jaśniejsze tło przy hover */
 }
 
