@@ -36,6 +36,7 @@
             <div class="tile" id="ads-percentage">Procent blokowanych: <span>-</span></div>
             <div class="tile" id="domains-blocked">Domeny na liście: <span>-</span></div>
         </div>
+        
 
         <div class="charts">
             <div class="chart">
@@ -92,8 +93,18 @@
                         datasets: [{
                             label: 'Zapytania klientów',
                             data: counts,
-                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                            borderColor: 'rgba(75, 192, 192, 1)',
+                            backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 205, 86, 0.2)',
+                            'rgba(153, 102, 255, 0.2)'],
+                            borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255, 205, 86, 1)',
+                            'rgba(153, 102, 255, 1)'],
                             borderWidth: 1
                         }]
                     },
@@ -102,7 +113,7 @@
                         maintainAspectRatio: false,
                         plugins: {
                             legend: {
-                                display: false
+                                display: false,
                             },
                             title: {
                                 display: false,
@@ -141,15 +152,25 @@
 
                 const ctx = document.getElementById('topDomainsChart').getContext('2d');
                 new Chart(ctx, {
-                    type: 'bar',
+                    type: 'pie',
                     data: {
                         labels: labels,
                         datasets: [
                             {
                                 label: 'Zapytania',
                                 data: queryCounts,
-                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                                borderColor: 'rgba(54, 162, 235, 1)',
+                                backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 205, 86, 0.2)',
+                            'rgba(153, 102, 255, 0.2)'],
+                            borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255, 205, 86, 1)',
+                            'rgba(153, 102, 255, 1)'],
                                 borderWidth: 1
                             },
                         ]
@@ -159,11 +180,11 @@
                         maintainAspectRatio: false,
                         plugins: {
                             legend: { display: false },
-                            title: { display: false }
+                            title: { display: true }
                         },
                         scales: {
                             y: {
-                                title: { display: false, text: 'Liczba' },
+                                title: { display: true, text: 'Liczba zapytań' },
                                 beginAtZero: true
                             }
                         }
