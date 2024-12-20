@@ -104,7 +104,7 @@
         document.querySelector('.group-table').addEventListener('click', async (event) => {
             const editButton = event.target.closest('.edit-button');
             const doneButton = event.target.closest('.done-btn');
-            const deleteButton = event.target.closest('.delete-btn');
+            const deleteButton = event.target.closest('.delete-button');
             const toggle = event.target.closest('.group-toggle');
 
             if (editButton) {
@@ -127,9 +127,36 @@
                 await toggleGroupStatus(groupName, isEnabled);
             }
         });
+
+        const addButton = document.querySelector('.add-button');
+
+        addButton.addEventListener('click', async () => {
+            const name = document.getElementById('group-name').value.trim();
+            const description = document.getElementById('group-description').value.trim();
+
+            if (!name || !description) {
+                alert('Both Name and Description are required!');
+                return;
+            }
+
+            try {
+                const newGroup = await addGroup(name, description);
+                const group = {
+                    name: name,
+                    description: description,
+                    enabled: 1
+                }
+                addGroupToTable(group); 
+                alert('Group added successfully!');
+                document.getElementById('group-name').value = '';
+                document.getElementById('group-description').value = '';
+            } catch (error) {
+                console.error(error.message);
+                alert('Failed to add group.');
+            }
+        });
+
     });
-    
-    // Fetch groups and populate the table
     async function fetchGroups() {
         try {
             const response = await fetch('/groups/getGroups');
@@ -166,7 +193,6 @@
         }
     }
     
-    // Enable edit mode for a row
     function enableEditMode(row) {
         const nameCell = row.querySelector('.group-name');
         const descCell = row.querySelector('.group-description');
@@ -181,8 +207,7 @@
         actionCell.innerHTML = `
             <button class="done-btn" data-original-name="${originalName}" data-original-description="${originalDescription}">Done</button>`;
     }
-    
-    // Handle Done button click and send requests
+
     async function handleEditDone(row) {
         const nameInput = row.querySelector('.edit-name');
         const descInput = row.querySelector('.edit-description');
@@ -197,7 +222,6 @@
         const promises = [];
         let hasChanges = false;
     
-        // If the name has changed, send a request to update it
         if (newName !== originalName) {
             hasChanges = true;
             promises.push(
@@ -211,7 +235,6 @@
             );
         }
     
-        // If the description has changed, send a request to update it
         if (newDescription !== originalDescription) {
             hasChanges = true;
             promises.push(
@@ -224,8 +247,6 @@
                 })
             );
         }
-    
-        // Send the requests
         try {
             if (hasChanges) {
                 await Promise.all(promises);
@@ -233,8 +254,6 @@
             } else {
                 alert('No changes detected.');
             }
-    
-            // Return the row to its original state
             nameInput.parentElement.textContent = newName;
             descInput.parentElement.textContent = newDescription;
             actionCell.innerHTML = '<button class="edit-button">📝</button> <button class="delete-button">❌</button>';
@@ -284,5 +303,50 @@
         }
         return response.json();
     };
+
+    async function addGroup(name, description) {
+        try {
+            const response = await fetch('/groups/addGroup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, description }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Failed to add group');
+            }
+
+            return response.json();
+        } catch (error) {
+            console.error('Error in addGroup:', error.message);
+            throw error;
+        }
+    }
+
+    function addGroupToTable(group) {
+        const tableBody = document.querySelector('.group-table tbody');
+        if (!tableBody) {
+            console.error('Table body element not found!');
+            return;
+        }
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${group.name}</td>
+            <td>${group.description}</td>
+            <td>
+                <label class="switch">
+                <input type="checkbox" class="group-toggle" data-group-name="${group.name}" ${group.enabled ? 'checked' : ''}>
+                <span class="slider round"></span></label>
+            </td>
+            <td>
+                <button class="edit-button">📝</button>
+                <button class="delete-button" data-group-name="${group.name}">❌</button>
+            </td>`;
+        tableBody.appendChild(row);
+    }
 </script>       
 </html>
