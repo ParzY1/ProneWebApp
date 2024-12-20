@@ -102,7 +102,7 @@
         await fetchGroups();
     
         document.querySelector('.group-table').addEventListener('click', async (event) => {
-            const editButton = event.target.closest('.edit-btn');
+            const editButton = event.target.closest('.edit-button');
             const doneButton = event.target.closest('.done-btn');
             const deleteButton = event.target.closest('.delete-btn');
             const toggle = event.target.closest('.group-toggle');
@@ -237,7 +237,7 @@
             // Return the row to its original state
             nameInput.parentElement.textContent = newName;
             descInput.parentElement.textContent = newDescription;
-            actionCell.innerHTML = '<button class="edit-btn">Edit</button>';
+            actionCell.innerHTML = '<button class="edit-button">📝</button> <button class="delete-button">❌</button>';
         } catch (error) {
             console.error('Error updating group:', error);
             alert('Failed to update group.');
