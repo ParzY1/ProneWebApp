@@ -21,6 +21,8 @@ app.use(cookieParser());
 // Static files
 app.use('/img', express.static(path.join(__dirname, 'img')));
 app.use('/styles', express.static(path.join(__dirname, 'styles')));
+app.use('/components', express.static(path.join(__dirname, 'components')));
+app.use('/scripts', express.static(path.join(__dirname, 'scripts')));
 
 app.post('/api/login', loginHandler);
 

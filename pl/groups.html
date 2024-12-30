@@ -11,21 +11,7 @@
 
     <!-- Sidebar navigation -->
     <div class="sidebar">
-        <div class="logo">
-            <img src="../img/logo.png" alt="Prone Logo">
-            <p>Prone</p>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="/pl/dashboard">Ekran główny</a></li>
-                <li><a href="/pl/query_log">Logi zapytań</a></li>
-                <li><a href="/pl/groups">Grupy</a></li>
-                <li><a href="/pl/adlists">Lista filtrów</a></li>
-                <li><a href="/pl/clients">Klienci</a></li>
-                <li><a href="/pl/domains">Domeny</a></li>
-                <li><a href="/pl/settings">Ustawienia</a></li>
-            </ul>
-        </nav>
+        <!-- costam navbar -->
     </div>
 
     <!-- Main content -->
@@ -34,28 +20,13 @@
 
         <!-- Formularz dodawania grupy -->
         <div class="input-section">
-            <label for="group-name">Nazwa grupy:</label>
-            <input type="text" id="group-name" placeholder="Wpisz nazwę grupy">
-            
-            <label for="group-description">Opis:</label>
-            <input id="group-description" placeholder="Wpisz opis grupy">
-            <br>
-
-            <div class="tips">
-                <p><strong>Wskazówki:</strong></p>
-                <ul>
-                    <li> Można dodać wiele grup, oddzielając każdą nazwę grupy spacją.</li>
-                    <li> Nazwa grup może zawierać spacje, jeśli jest wprowadzona w cudzysłowie. Np. "Moja nowa grupa".</li>
-                </ul>
-            </div>
-            <br>
-            <button class="add-button">Dodaj</button>
+            <!-- costam input -->
         </div>
 
 
 
         <!-- Lista grup i paginacja -->
-        <section class="group-list">
+        <!-- <section class="group-list">
             <h2>Lista grup</h2>
             <div class="pagination">
                 <label for="records-per-page">Pokaż:</label>
@@ -65,7 +36,7 @@
                     <option value="50">50</option>
                 </select>
                 <span>rekordów</span>
-            </div>
+            </div> -->
 
             <!-- Tabela grup -->
             <table class="group-table">
@@ -92,261 +63,6 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer">
-        Created by ACDIT Sp. z o.o.
-    </footer>
-
-</body>
-<script>
-    document.addEventListener('DOMContentLoaded', async () => {
-        await fetchGroups();
-    
-        document.querySelector('.group-table').addEventListener('click', async (event) => {
-            const editButton = event.target.closest('.edit-button');
-            const doneButton = event.target.closest('.done-btn');
-            const deleteButton = event.target.closest('.delete-button');
-            const toggle = event.target.closest('.group-toggle');
-
-            if (editButton) {
-                enableEditMode(editButton.closest('tr'));
-            }
-
-            if (doneButton) {
-                await handleEditDone(doneButton.closest('tr'));
-            }
-
-            if (deleteButton) {
-                const groupName = deleteButton.dataset.groupName;
-                await handleDeleteGroup(groupName, deleteButton.closest('tr'));
-            }
-
-            if (toggle) {
-                const groupName = toggle.dataset.groupName;
-                const isEnabled = toggle.checked;
-
-                await toggleGroupStatus(groupName, isEnabled);
-            }
-        });
-
-        const addButton = document.querySelector('.add-button');
-
-        addButton.addEventListener('click', async () => {
-            const name = document.getElementById('group-name').value.trim();
-            const description = document.getElementById('group-description').value.trim();
-
-            if (!name || !description) {
-                alert('Both Name and Description are required!');
-                return;
-            }
-
-            try {
-                const newGroup = await addGroup(name, description);
-                const group = {
-                    name: name,
-                    description: description,
-                    enabled: 1
-                }
-                addGroupToTable(group); 
-                alert('Group added successfully!');
-                document.getElementById('group-name').value = '';
-                document.getElementById('group-description').value = '';
-            } catch (error) {
-                console.error(error.message);
-                alert('Failed to add group.');
-            }
-        });
-
-    });
-    async function fetchGroups() {
-        try {
-            const response = await fetch('/groups/getGroups');
-            if (!response.ok) throw new Error('Failed to load groups');
-    
-            const { data } = await response.json();
-            const tableBody = document.querySelector('.group-table tbody');
-            tableBody.innerHTML = '';
-    
-            data.forEach((group) => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td class="group-name">${group.name}</td>
-                    <td class="group-description">${group.description}</td>
-                    <td>
-                        <label class="switch">
-                            <input type="checkbox" class="group-toggle" data-group-name="${group.name}" ${group.enabled ? 'checked' : ''}>
-                            <span class="slider round"></span>
-                        </label>
-                    </td>
-                    <td>
-                        <button class="edit-button">📝</button>
-                        <button class="delete-button" data-group-name="${group.name}">❌</button>
-                    </td>`;
-                row.querySelector('.group-toggle').addEventListener('change', (event) => {
-                    console.log('Toggle clicked:', event.target.checked);
-                    toggleGroupStatus(group.name, event.target.checked);
-                });
-                tableBody.appendChild(row);
-            });
-        } catch (error) {
-            console.error(error.message);
-            alert('Failed to load groups.');
-        }
-    }
-    
-    function enableEditMode(row) {
-        const nameCell = row.querySelector('.group-name');
-        const descCell = row.querySelector('.group-description');
-        const actionCell = row.querySelector('td:last-child');
-    
-        const originalName = nameCell.textContent.trim();
-        const originalDescription = descCell.textContent.trim();
-    
-        nameCell.innerHTML = `<input type="text" class="edit-name" value="${originalName}">`;
-        descCell.innerHTML = `<input type="text" class="edit-description" value="${originalDescription}">`;
-    
-        actionCell.innerHTML = `
-            <button class="done-btn" data-original-name="${originalName}" data-original-description="${originalDescription}">Done</button>`;
-    }
-
-    async function handleEditDone(row) {
-        const nameInput = row.querySelector('.edit-name');
-        const descInput = row.querySelector('.edit-description');
-        const actionCell = row.querySelector('td:last-child');
-    
-        const originalName = actionCell.querySelector('.done-btn').dataset.originalName;
-        const originalDescription = actionCell.querySelector('.done-btn').dataset.originalDescription;
-    
-        const newName = nameInput.value.trim();
-        const newDescription = descInput.value.trim();
-    
-        const promises = [];
-        let hasChanges = false;
-    
-        if (newName !== originalName) {
-            hasChanges = true;
-            promises.push(
-                fetch('/groups/editGroupName', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ oldName: originalName, newName }),
-                })
-            );
-        }
-    
-        if (newDescription !== originalDescription) {
-            hasChanges = true;
-            promises.push(
-                fetch('/groups/editGroupDescription', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ name: newName, description: newDescription }),
-                })
-            );
-        }
-        try {
-            if (hasChanges) {
-                await Promise.all(promises);
-                alert('Group updated successfully!');
-            } else {
-                alert('No changes detected.');
-            }
-            nameInput.parentElement.textContent = newName;
-            descInput.parentElement.textContent = newDescription;
-            actionCell.innerHTML = '<button class="edit-button">📝</button> <button class="delete-button">❌</button>';
-        } catch (error) {
-            console.error('Error updating group:', error);
-            alert('Failed to update group.');
-        }
-    }
-
-    async function handleDeleteGroup(groupName, row) {
-        if (!confirm(`Are you sure you want to delete the group "${groupName}"?`)) {
-            return;
-        }
-
-        try {
-            const response = await fetch('/groups/deleteGroup', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name: groupName }),
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to delete group');
-            }
-
-            alert('Group deleted successfully!');
-            row.remove(); // Remove the row from the table
-        } catch (error) {
-            console.error('Error deleting group:', error);
-            alert('Failed to delete group.');
-        }
-    };
-
-    async function toggleGroupStatus(groupName, isEnabled) {
-        const url = `/groups/${isEnabled ? 'enableGroup' : 'disableGroup'}`;
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ name: groupName }),
-        });
-        if (!response.ok) {
-            throw new Error(`Failed to ${isEnabled ? 'enable' : 'disable'} group.`);
-        }
-        return response.json();
-    };
-
-    async function addGroup(name, description) {
-        try {
-            const response = await fetch('/groups/addGroup', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name, description }),
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || 'Failed to add group');
-            }
-
-            return response.json();
-        } catch (error) {
-            console.error('Error in addGroup:', error.message);
-            throw error;
-        }
-    }
-
-    function addGroupToTable(group) {
-        const tableBody = document.querySelector('.group-table tbody');
-        if (!tableBody) {
-            console.error('Table body element not found!');
-            return;
-        }
-
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${group.name}</td>
-            <td>${group.description}</td>
-            <td>
-                <label class="switch">
-                <input type="checkbox" class="group-toggle" data-group-name="${group.name}" ${group.enabled ? 'checked' : ''}>
-                <span class="slider round"></span></label>
-            </td>
-            <td>
-                <button class="edit-button">📝</button>
-                <button class="delete-button" data-group-name="${group.name}">❌</button>
-            </td>`;
-        tableBody.appendChild(row);
-    }
-</script>       
+</body>  
+<script type="module" src="../scripts/groups.js"></script>
 </html>

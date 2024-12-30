@@ -32,7 +32,6 @@ const editGroupName = async (req, res) => {
     }
 
     try {
-        // Send the request to the external API
         await groupService.editGroupName(oldName, newName);
         res.json({ message: 'Group name updated successfully' });
     } catch (error) {
@@ -48,7 +47,6 @@ const editGroupDescription = async (req, res) => {
     }
 
     try {
-        // Send the request to the external API
         await groupService.editGroupDescription(name, description);
         res.json({ message: 'Group description updated successfully' });
     } catch (error) {
@@ -64,7 +62,7 @@ const deleteGroup = async (req, res) => {
     }
 
     try {
-        await groupService.deleteGroup(name); // Call service method
+        await groupService.deleteGroup(name);
         res.json({ message: 'Group deleted successfully' });
     } catch (error) {
         res.status(500).json({ error: error.message });
