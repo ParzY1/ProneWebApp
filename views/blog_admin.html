@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="icon" href="../img/icons/favicon.png" type="image/png">
+    <title>Panel Administracyjny</title>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <img src="../img/logo.png" alt="Prone Logo">
+        </div>
+        <nav class="nav-links">
+            <ul>
+                <li><a href="/blog_pl.html">Powrót do Bloga</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="panel">
+        <h2>Panel Administracyjny</h2>
+        <form id="changelogForm">
+            <label for="version">Numer wersji:</label>
+            <input type="text" id="version" name="version" required><br>
+
+            <label for="changelogText">Treść changeloga:</label><br>
+            <textarea id="changelogText" name="changelogText" rows="10" required></textarea><br>
+
+            <button type="submit">Dodaj Changelog</button>
+        </form>
+        <div id="responseMessage"></div>
+    </section>
+
+    <footer class="footer">
+        <p>Created by ACDIT Sp. z o.o.</p>
+    </footer>
+
+    <script src="../js/blog.js"></script>
+</body>
+</html>

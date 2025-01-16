@@ -71,6 +71,17 @@
             }
         };
 
+        const fetchCostam = async () => {
+            try {
+                const response = await fetch('https://zsmeie-int.prone.pl/pi-hole/summary-statistics', {
+                    method: 'GET',
+                });
+                console.log(response); 
+            } catch(error) {
+                console.error('Error loading dashboard data:', error);
+            }
+        }
+
         // Fetch and render top clients chart
         const renderTopClientsChart = async () => {
             try {
@@ -197,6 +208,7 @@
         };
 
         document.addEventListener('DOMContentLoaded', () => {
+            fetchCostam();
             fetchSummary();
             renderTopClientsChart();
             renderTopDomainsChart();

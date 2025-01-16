@@ -1,0 +1,103 @@
+/* General Styles */
+body {
+    font-family: 'SF New Republic', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #11111F;
+    color: #F9F6F2;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #161625;
+    padding: 25px 30px;
+}
+
+.navbar .logo img {
+    max-height: 40px;
+    max-width: 160px;
+    vertical-align: middle;
+    margin-top:7px;
+}
+
+.nav-links {
+    margin-left: 20px;
+}
+
+.nav-links ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    padding-right: 20px;
+}
+
+.nav-links ul li a {
+    padding: 5px;
+    color: #F9F6F2;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: color 0.3s;
+}
+
+.nav-links ul li a:hover {
+    color: #eaaa00;
+}
+
+.language-switch {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.language-switch a img {
+    margin-left: 10px;
+    width: 40px;
+}
+
+/* Section Styles */
+.section {
+    margin-top: 80px;
+    padding: 70px 50px;
+    text-align: center;
+    background-color: #161625;
+    margin-bottom: 20px;
+}
+
+.section h2 {
+    color: #F9F6F2;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+/* Blog Update Styles */
+.update-entry {
+    margin-bottom: 20px;
+}
+
+.update-entry h3 {
+    color: #eaaa00;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.update-entry p {
+    color: #A9A9B1;
+    font-size: 1.2em;
+}
+
+/* Footer */
+.footer {
+    padding: 20px;
+    text-align: center;
+    background-color: #11111F;
+    color: #F9F6F2;
+    font-size: 1em;
+}

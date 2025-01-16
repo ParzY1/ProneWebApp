@@ -1,0 +1,69 @@
+body {
+    font-family: 'SF New Republic', sans-serif;
+    background-color: #11111F;
+    color: #F9F6F2;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #161625;
+    padding: 20px;
+}
+
+.nav-links ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links ul li a {
+    color: #F9F6F2;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.panel {
+    padding: 50px;
+    text-align: center;
+    background-color: #161625;
+}
+
+.panel form {
+    margin: 20px 0;
+}
+
+.panel input, .panel textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #22223B;
+    border: 1px solid #5E5D7A;
+    color: #F9F6F2;
+    font-size: 1em;
+}
+
+.panel button {
+    background-color: #eaaa00;
+    color: #161625;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.panel button:hover {
+    background-color: #F9F6F2;
+}
+
+.footer {
+    padding: 20px;
+    text-align: center;
+    background-color: #11111F;
+    color: #F9F6F2;
+}

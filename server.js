@@ -23,6 +23,7 @@ app.use('/img', express.static(path.join(__dirname, 'img')));
 app.use('/styles', express.static(path.join(__dirname, 'styles')));
 app.use('/components', express.static(path.join(__dirname, 'components')));
 app.use('/scripts', express.static(path.join(__dirname, 'scripts')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/api/login', loginHandler);
 
@@ -38,6 +39,7 @@ app.use('/dashboard', dashboardRoutes);
 app.get('/pl/:page', (req, res) => {
     const page = req.params.page;
     const validPages = ['login', 'dashboard', 'adlists', 'clients', 'domains', 'groups', 'query_log', 'settings'];
+    console.log(path.join(__dirname, `pl/${page}.html`));
     if (validPages.includes(page)) {
         res.sendFile(path.join(__dirname, `pl/${page}.html`));
     } else {
@@ -56,12 +58,33 @@ app.get('/en/:page', (req, res) => {
     }
 });
 
-// Catch-all for undefined routes
+app.get('/blog/:lang', (req, res) => {
+    const lang = req.params.lang;
+    if (lang === 'pl') {
+        res.sendFile(path.join(__dirname, 'views', 'blog_pl.html'));
+    } else {
+        res.sendFile(path.join(__dirname, 'views', 'blog_en.html'));
+    }
+});
+
+app.get('/:lang', (req, res) => {
+    const lang = req.params.lang;
+    if (lang === 'pl') {
+        res.sendFile(path.join(__dirname, 'views', 'index_pl.html'));
+    } 
+    if (lang === 'en') {
+        res.sendFile(path.join(__dirname, 'views', 'index_en.html'));
+    }
+});
+
+app.get('/', (req, res) => {
+    res.redirect('/pl');
+});
+
 app.use((req, res) => {
     res.status(404).send('Page not found');
 });
 
-// Start server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

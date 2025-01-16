@@ -1,7 +1,7 @@
 {
   "name": "pronewebapp",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^1.7.9",
     "cookie-parser": "^1.4.7",
-    "express": "^4.21.1"
+    "express": "^4.21.1",
+    "node-fetch": "^2.7.0"
   }
 }

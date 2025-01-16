@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" href="/img/icons/favicon.png" type="image/png">
+    <title>PRONE - Cyberbezpieczeństwo</title>
+</head>
+<body>
+
+    <!-- Pasek nawigacyjny -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="/img/logo.png" alt="Prone Logo" ondragstart="false" draggable="false">
+        </div>
+        <nav class="nav-links">
+            <ul>
+                <li><a href="#why-prone">Dlaczego PRONE?</a></li>
+                <li><a href="#offer">Oferta</a></li>
+                <li><a href="#key-features">Kluczowe Funkcje</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+                <li>
+                    <a href="#blog">Blog</a>
+                    <!-- <a href="/blog/pl">
+                      Blog
+                      <div class="nav-icon-container">
+                        <img src="../img/icons/external3.png" alt="External Link Icon" class="nav-external-icon">
+                      </div>
+                    </a> -->
+                </li>
+                <li>
+                    <a href="pl/login">Zaloguj</a>
+                    <div class="nav-icon-container">
+                        <img src="../img/icons/external3.png" alt="External Link Icon" class="nav-external-icon">
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <div class="language-switch">
+            <a href="/en"><img src="../img/flags/uk.png" alt="English"></a>
+            <a href="/pl"><img src="../img/flags/pl.png" alt="Polski"></a>
+        </div>
+    </header>
+
+    <!-- Sekcja Hero -->
+    <section class="hero">
+        <div class="hero-content">
+          <h1 class="fade-in"><span class="highlight-prone">PRONE</span> – Nowoczesne narzędzie cyberbezpieczeństwa dla sieci lokalnych</h1>
+          <p class="delayed-slide-in">PRONE to zaawansowane oprogramowanie do zarządzania i kontrolowania ruchu w sieci lokalnej, stworzone z myślą o zapewnieniu maksymalnego poziomu cyberbezpieczeństwa.</p>
+          <a href="#offer" class="cta-btn">Zobacz ofertę PRONE</a>
+        </div>
+        <div class="hero-image">
+          <img class="fade-in" src="../gifs/animation_3.gif" alt="PRONE Animacja">
+        </div>
+      </section>      
+
+    <!-- Dlaczego PRONE? -->
+    <section id="why-prone" class="section card">
+        <h2>Dlaczego PRONE?</h2>
+        <hr class="animated-hr">
+        <p>PRONE skutecznie blokuje niepożądane strony internetowe i ogranicza dostęp do określonych zasobów sieciowych, chroniąc Twoją infrastrukturę przed zagrożeniami zewnętrznymi i wewnętrznymi.</p>
+        <div class="key-features flip-card-container">
+            <div class="flip-card">
+                <img src="../img/icons/alternate-shield.png" alt="Blokowanie ikonka" />
+                <h3>Blokowanie niepożądanych stron</h3>
+                <p class="description">PRONE pomaga blokować dostęp do stron i aplikacji, które mogą stanowić zagrożenie dla bezpieczeństwa.</p>
+            </div>
+    
+            <div class="flip-card">
+                <img src="../img/icons/no-connection.png" alt="Analiza ikonka" />
+                <h3>Analiza ruchu sieciowego</h3>
+                <p class="description">PRONE zapewnia analizę w czasie rzeczywistym ruchu w Twojej lokalnej sieci, aby wykryć potencjalne problemy.</p>
+            </div>
+    
+            <div class="flip-card">
+                <img src="../img/icons/server.png" alt="Reguły ikonka" />
+                <h3>Zarządzanie regułami dostępu</h3>
+                <p class="description">Określaj i zarządzaj szczegółowymi zasadami dostępu, aby chronić zasoby swojej sieci.</p>
+            </div>
+    
+            <div class="flip-card">
+                <img src="../img/icons/system.png" alt="Integracja ikonka" />
+                <h3>Łatwa integracja</h3>
+                <p class="description">Łatwo zintegruj PRONE z istniejącą infrastrukturą zabezpieczeń.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="offer" class="section card">
+        <h2>Oferta</h2>
+        <hr class="animated-hr">
+        <p>PRONE oferuje rozbudowane możliwości monitorowania ruchu sieciowego, analizy danych oraz wykrywania potencjalnych zagrożeń w czasie rzeczywistym.</p>
+    </section>
+    
+    <section id="blog" class="section card">
+        <h2>Blog</h2>
+        <hr class="animated-hr">
+        <p>Przeczytaj więcej na temat najnowszych trendów w dziedzinie cyberbezpieczeństwa.</p>
+    </section>
+    
+    <section id="contact" class="section card">
+        <h2>Kontakt</h2>
+        <form action="/submit-form" method="POST" class="contact-form">
+            <label for="name">Imię i nazwisko:</label>
+            <input type="text" id="name" name="name" placeholder="Wpisz swoje imię i nazwisko" required>
+    
+            <label for="company">Nazwa firmy/instytucji:</label>
+            <input type="text" id="company" name="company" placeholder="Wpisz nazwę firmy lub instytucji">
+    
+            <label for="email">Adres e-mail:</label>
+            <input type="email" id="email" name="email" placeholder="Wpisz swój e-mail" required>
+    
+            <label for="subject">Wybór tematu:</label>
+            <select id="subject" name="subject" required>
+                <option value="purchase">Zakup</option>
+                <option value="question">Pytanie</option>
+                <option value="issue">Zgłoś problem</option>
+                <option value="other">Inne</option>
+            </select>
+    
+            <label for="message">Wiadomość:</label>
+            <textarea id="message" name="message" placeholder="Wpisz swoją wiadomość tutaj..." rows="5" required></textarea>
+    
+            <button type="submit" class="cta-btn1">Wyślij</button>
+        </form>
+    </section>
+        
+
+    <!-- Stopka -->
+    <footer class="footer">
+        <p>Created by ACDIT Sp. z o.o.</p>
+    </footer>
+
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const observer = new IntersectionObserver(
+            (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+                observer.unobserve(entry.target);
+                }
+            });
+            },
+            {
+            threshold: 0.2,
+            }
+        );
+
+        const fadeElements = document.querySelectorAll(".fade-in, .delayed-slide-in");
+        fadeElements.forEach(el => observer.observe(el));
+
+        const sections = document.querySelectorAll('.section');
+
+        const sectionsObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const section = entry.target;
+                        const hr = section.querySelector('.animated-hr');
+                        const paragraph = section.querySelector('p');
+
+                        section.classList.add('visible');
+
+                        setTimeout(() => {
+                            hr.classList.add("visible");
+
+                            setTimeout(() => {
+                                if (paragraph) paragraph.classList.add("visible");
+                            }, 600);
+                        }, 600);
+                    }
+                });
+            },
+            { threshold: 0.5 }
+        );
+
+        sections.forEach((section) => sectionsObserver.observe(section));
+
+        const features = document.querySelectorAll('.flip-card');
+        const featuresObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        const featureCard = entry.target;
+
+                        setTimeout(() => {
+                            featureCard.classList.add("visible");
+                        }, index * 300);
+                    }
+                });
+            },
+            { threshold: 0.5 }
+        );
+
+        features.forEach((featureCard) => featuresObserver.observe(featureCard));
+    });
+</script>
+</html>

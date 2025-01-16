@@ -1,0 +1,559 @@
+/* General Styles */
+body {
+    font-family: 'SF New Republic', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #11111F;
+    color: #F9F6F2;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #161625;
+    padding: 25px 30px;
+}
+
+.navbar .logo img {
+    max-height: 40px; /* Ustaw wysokość logo */
+    max-width: 160px;
+    vertical-align: middle; /* Wyrównanie pionowe */
+    margin-top:7px;
+    
+}
+
+.nav-links {
+    margin-left: 20px;
+}
+
+.nav-links ul {
+    position: relative;
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+.nav-icon-container {
+    position: absolute;  /* Allows positioning in relation to the closest positioned ancestor */
+    right: 0px;  /* Push it to the right of its parent container */
+    top: 0px;    /* Align it to the top */
+    padding: 5px;
+}
+
+.nav-link {
+    position: relative;  /* Ensures the icon can be placed within the link */
+    display: inline-block; /* Keeps the text and image together */
+    padding-right: 20px;   /* Adds space for the icon */
+  }
+  
+  .nav-external-icon {
+    width: 14px;   /* Adjust size */
+    height: 14px;
+    position: absolute;
+    right: 0;      /* Push it to the right edge of the text */
+    top: 0;        /* Align it to the top */
+    margin-left: 5px; /* Add space between text and icon */
+    fill: white;
+    
+  }
+  
+
+.nav-links ul li {
+    margin-right: 20px;
+}
+
+.nav-links ul li a {
+    color: #F9F6F2;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: color 0.3s;
+}
+
+.nav-links ul li a:hover {
+    color: #eaaa00;
+}
+
+.language-switch {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.language-switch a img {
+    margin-left: 10px;
+    width: 40px;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #11111F;
+}
+
+.hero-content {
+    max-width: 50%;
+}
+
+.hero h1 {
+    color: #F9F6F2;
+    font-size: 3.5em;
+    margin-bottom: 30px;
+}
+
+.hero h1 .highlight-prone {
+    color: #eaaa00;
+}
+
+.hero p {
+    color: #A9A9B1;
+    font-size: 1.4em;
+    margin-bottom: 40px;
+}
+
+.cta-btn {
+    background-color: #eaaa00;
+    padding: 15px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.cta-btn:hover {
+    background-color: #d49a00;
+}
+
+.hero-image img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+/* Section Styles */
+.section {
+    padding: 70px 50px;
+    text-align: center;
+    background-color: #161625;
+    margin-bottom: 0px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+.section h2 {
+    color: #F9F6F2;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.animated-hr {
+    width: 0;
+    height: 2px;
+    background-color: #eaaa00;
+    margin: 10px auto;
+    border: none;
+    transition: width 0.6s ease;
+}
+
+.animated-hr.visible {
+    width: 100%;
+}
+
+.section p {
+    color: #A9A9B1;
+    font-size: 1.2em;
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.section p.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Sekcje jako "cards" */
+.card {
+    background-color: #1A1A28;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4);
+    margin: 20px 0;
+}
+
+.card p {
+    color: #A9A9B1;
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+/* Key Features */
+.key-features {
+    padding: 80px 50px;
+    background-color: #1A1A28;
+}
+
+.features-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 30px;
+}
+
+.feature-box {
+    background-color: #161625;
+    padding: 30px;
+    border-radius: 10px;
+    width: 45%;
+    max-width: 400px;
+    text-align: left;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.feature-box h3 {
+    color: #eaaa00;
+    margin-bottom: 15px;
+}
+
+.feature-box p {
+    color: #F9F6F2;
+    font-size: 1.1em;
+}
+
+
+/* Container for Flip Cards */
+.flip-card-container {
+    display: flex;
+    height: 300px;
+    justify-content: space-evenly;
+    gap: 20px;
+    padding: 25px 0;
+}
+
+/* Individual Flip Card */
+.flip-card {
+    background-color: #161625;
+    width: 200px;
+    height: 100px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease-in-out;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    justify-content: flex-start;
+    padding: 10px;
+    border-radius: 10%;
+    transform: translateY(30px);
+    opacity: 0;
+    transition: opacity 0,6 ease-out, transform 0,6 ease-out;
+}
+
+.flip-card.visible {
+    transform: translateY(0px);
+    opacity: 1;
+}
+
+.flip-card:hover {
+    height: 225px;
+}
+
+/* Text Styling */
+.flip-card h3 {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #eaaa00;
+    margin: 10px 0;
+}
+
+.flip-card img {
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.flip-card .description {
+    line-height: 1.5;
+    font-size: 0.8em;
+    color: #F9F6F2;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease-in-out;
+    margin-top: 20px;
+}
+
+.flip-card:hover .description {
+    opacity: 1;
+    max-height: 200px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #161625;
+    border-radius: 10px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.contact-form label {
+    color: #eaaa00;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    padding: 10px;
+    font-size: 1em;
+    color: #F9F6F2;
+    background-color: #1A1A28;
+    border: 1px solid #333344;
+    border-radius: 5px;
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.contact-form button {
+    align-self: flex-start;
+    background-color: #eaaa00;
+    color: #F9F6F2;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #d49a00;
+}
+.cta-btn1 {
+    background-color: #eaaa00;
+    padding: 15px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    margin-left: 85%;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+
+
+/* Footer */
+.footer {
+    padding: 20px;
+    text-align: center;
+    background-color: #11111F;
+    color: #F9F6F2;
+    font-size: 1em;
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+    body {
+        overflow-x: hidden; /* Usunięcie odstępu po prawej stronie */
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 20px;
+    }
+
+    .navbar .logo {
+        margin-bottom: 10px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .navbar .logo img {
+        max-height: 35px;
+        max-width: 140px;
+    }
+
+    .nav-links {
+        width: 100%; /* Ustawienie szerokości menu */
+        text-align: center;
+    }
+
+    .nav-links ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .hero {
+        flex-direction: column;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+
+    .hero p {
+        font-size: 1.2em;
+        margin-bottom: 30px;
+    }
+
+    .hero-image img {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+
+    .features-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .feature-box {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .flip-card-container {
+        flex-direction: column;
+        gap: 15px;
+        height: auto;
+    }
+
+    .flip-card {
+        width: 100%;
+        height: auto;
+    }
+
+    .contact-form {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        overflow-x: hidden; /* Usunięcie odstępu po prawej stronie */
+    }
+
+    .navbar {
+        align-items: center;
+        padding: 10px;
+    }
+
+    .navbar .logo img {
+        max-height: 30px;
+        max-width: 100px;
+        margin-bottom: 10px;
+    }
+
+    .nav-links ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .nav-links ul li {
+        margin-right: 0; /* Usunięcie odstępów między elementami menu */
+    }
+
+    .nav-links ul li a {
+        font-size: 1em;
+        padding: 5px 10px;
+    }
+
+    .hero h1 {
+        font-size: 2em;
+    }
+
+    .hero p {
+        font-size: 1em;
+    }
+
+    .cta-btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+
+    .flip-card {
+        margin: 0 auto; /* Wycentrowanie flip cards */
+    }
+
+    .flip-card:hover {
+        height: auto; /* Dopasowanie wysokości na małych ekranach */
+    }
+
+    .flip-card .description {
+        font-size: 0.8em;
+    }
+
+    .footer {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+}
+/* Animacje */
+.fade-in,
+.delayed-slide-in {
+    opacity: 0;
+    transform: translateY(110px); /* Większy odstęp na start */
+    transition: opacity 0.8s ease, transform 0.8s ease; /* Dłuższy czas animacji */
+}
+
+.fade-in.show,
+.delayed-slide-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Opcjonalnie, dla delayed-slide-in, jeśli chcesz opóźnić animację */
+.delayed-slide-in.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.8s; /* Opóźnienie */
+}
+
+/* Animacja dla obrazka */
+.hero-image img.fade-in {
+    opacity: 0;
+    transform: none; 
+    transition: opacity 0.8s ease;
+}
+
+.hero-image img.fade-in.show {
+    opacity: 1;
+    transform: none;
+}
+
+/* Przycisk SEE PRONE OFFER */
+.hero .cta-btn {
+    margin-top: 60px; /* Większy odstęp, by uniknąć nakładania animacji na przycisk */
+}

@@ -43,8 +43,10 @@
             const response = await fetch('/api/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ identifier, password, rememberMe }),
+                body: JSON.stringify({ identifier, password }),
             });
+
+            console.log(response);
 
             if (!response.ok) {
                 const error = await response.json();
