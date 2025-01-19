@@ -1,11 +1,8 @@
 const axios = require('axios');
-const { getStoredToken } = require('../middlewares/auth');
 
 const CLIENTS_BASE_URL = 'https://zsmeie-int.prone.pl';
 
-const getClients = async () => {
-    const token = getStoredToken();
-
+const getClients = async (token) => {
     if (!token) {
         console.error('Token not found');
         throw new Error('Token not found');
@@ -28,9 +25,7 @@ const getClients = async () => {
     }
 };
 
-const editClientIp = async (oldIp, newIp) => {
-    const token = getStoredToken();
-
+const editClientIp = async (oldIp, newIp, token) => {
     if (!token) {
         console.error('Token not found');
         throw new Error('Token not found');
@@ -56,9 +51,7 @@ const editClientIp = async (oldIp, newIp) => {
     }
 };
 
-const editClientComment = async (ip, comment) => {
-    const token = getStoredToken();
-
+const editClientComment = async (ip, comment, token) => {
     if (!token) {
         console.error('Token not found');
         throw new Error('Token not found');
@@ -84,9 +77,7 @@ const editClientComment = async (ip, comment) => {
     }
 };
 
-const addClient = async (ip, comment) => {
-    const token = getStoredToken();
-
+const addClient = async (ip, comment, token) => {
     if (!token) {
         console.error('Token not found');
         throw new Error('Token not found');
@@ -109,8 +100,7 @@ const addClient = async (ip, comment) => {
     }
 };
 
-const addClientToGroup = async (clientIp, groupName) => {
-    const token = getStoredToken();
+const addClientToGroup = async (clientIp, groupName, token) => {
     if (!token) throw new Error('Token not found');
 
     const instance = axios.create({
@@ -127,8 +117,7 @@ const addClientToGroup = async (clientIp, groupName) => {
     }
 };
 
-const removeClientFromGroup = async (clientIp, groupName) => {
-    const token = getStoredToken();
+const removeClientFromGroup = async (clientIp, groupName, token) => {
     if (!token) throw new Error('Token not found');
 
     const instance = axios.create({
@@ -145,8 +134,7 @@ const removeClientFromGroup = async (clientIp, groupName) => {
     }
 };
 
-const removeClient = async (clientIp) => {
-    const token = getStoredToken();
+const removeClient = async (clientIp, token) => {
     if (!token) throw new Error('Token not found');
 
     const instance = axios.create({

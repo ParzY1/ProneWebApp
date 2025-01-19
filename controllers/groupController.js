@@ -1,8 +1,9 @@
 const groupService = require('../services/groupService');
 
 const getGroups = async (req, res) => {
+    const token = req.cookies.token;
     try {
-        const groups = await groupService.fetchGroups();
+        const groups = await groupService.fetchGroups(token);
         res.json(groups);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -10,6 +11,7 @@ const getGroups = async (req, res) => {
 };
 
 const createGroup = async (req, res) => {
+    const token = req.cookies.token;
     const { name, description } = req.body;
 
     if (!name || !description) {
@@ -17,7 +19,7 @@ const createGroup = async (req, res) => {
     }
 
     try {
-        const newGroup = await groupService.addGroup(name, description);
+        const newGroup = await groupService.addGroup(name, description, token);
         res.json(newGroup);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -25,6 +27,7 @@ const createGroup = async (req, res) => {
 };
 
 const editGroupName = async (req, res) => {
+    const token = req.cookies.token;
     const { oldName, newName } = req.body;
 
     if (!oldName || !newName) {
@@ -32,7 +35,7 @@ const editGroupName = async (req, res) => {
     }
 
     try {
-        await groupService.editGroupName(oldName, newName);
+        await groupService.editGroupName(oldName, newName, token);
         res.json({ message: 'Group name updated successfully' });
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -40,6 +43,7 @@ const editGroupName = async (req, res) => {
 };
 
 const editGroupDescription = async (req, res) => {
+    const token = req.cookies.token;
     const { name, description } = req.body;
 
     if (!name || !description) {
@@ -47,7 +51,7 @@ const editGroupDescription = async (req, res) => {
     }
 
     try {
-        await groupService.editGroupDescription(name, description);
+        await groupService.editGroupDescription(name, description, token);
         res.json({ message: 'Group description updated successfully' });
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -55,6 +59,7 @@ const editGroupDescription = async (req, res) => {
 };
 
 const deleteGroup = async (req, res) => {
+    const token = req.cookies.token;
     const { name } = req.body;
 
     if (!name) {
@@ -62,7 +67,7 @@ const deleteGroup = async (req, res) => {
     }
 
     try {
-        await groupService.deleteGroup(name);
+        await groupService.deleteGroup(name, token);
         res.json({ message: 'Group deleted successfully' });
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -70,6 +75,7 @@ const deleteGroup = async (req, res) => {
 };
 
 const toggleGroupStatus = async (req, res) => {
+    const token = req.cookies.token;
     const { name } = req.body;
     const enable = req.path.includes('enable');
 
@@ -78,7 +84,7 @@ const toggleGroupStatus = async (req, res) => {
     }
 
     try {
-        await groupService.toggleGroupStatus(name, enable);
+        await groupService.toggleGroupStatus(name, enable, token);
         res.json({ message: `Group ${enable ? 'enabled' : 'disabled'} successfully` });
     } catch (error) {
         res.status(500).json({ error: error.message });

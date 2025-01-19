@@ -1,11 +1,8 @@
 const axios = require('axios');
-const { getStoredToken } = require('../middlewares/auth');
 
 const ADLISTS_BASE_URL = 'https://zsmeie-int.prone.pl';
 
-const getAdlists = async () => {
-    const token = getStoredToken();
-
+const getAdlists = async (token) => {
     if(!token){
         console.error('Token not found');
         throw new Error('No token found');
@@ -28,9 +25,7 @@ const getAdlists = async () => {
     }
 };
 
-const addAdlist = async (address, comment) => {
-    const token = getStoredToken();
-
+const addAdlist = async (address, comment, token) => {
     if(!token) {
         console.error('Token not found');
         throw new Error('No token found');
@@ -56,9 +51,7 @@ const addAdlist = async (address, comment) => {
     }
 };
 
-const deleteAdlist = async (address) => {
-    const token = getStoredToken();
-
+const deleteAdlist = async (address, token) => {
     if(!token) {
         console.error('Token not found');
         throw new Error('No token found');
@@ -83,9 +76,7 @@ const deleteAdlist = async (address) => {
     }
 };
 
-const editAdlistAddress = async (oldAddress, newAddress) => {
-    const token = getStoredToken();
-
+const editAdlistAddress = async (oldAddress, newAddress, token) => {
     if(!token) {
         console.error('Token not found');
         throw new Error('No token found');
@@ -111,9 +102,7 @@ const editAdlistAddress = async (oldAddress, newAddress) => {
     }
 };
 
-const editAdlistComment = async (address, comment) => {
-    const token = getStoredToken();
-
+const editAdlistComment = async (address, comment, token) => {
     if(!token) {
         console.error('Token not found');
         throw new Error('No token found');
@@ -139,9 +128,7 @@ const editAdlistComment = async (address, comment) => {
     }
 };
 
-const enableAdlist = async(address) => {
-    const token = getStoredToken();
-
+const enableAdlist = async(address, token) => {
     if(!token) {
         console.error('Token not found');
         throw new Error('No token found');
@@ -166,9 +153,7 @@ const enableAdlist = async(address) => {
     }
 };
 
-const disableAdlist = async (address) => {
-    const token = getStoredToken();
-
+const disableAdlist = async (address, token) => {
     if(!token) {
         console.error('Token not found');
         throw new Error('No token found');
@@ -193,9 +178,7 @@ const disableAdlist = async (address) => {
     }
 };
 
-const addAdlistToGroup = async (address, group) => {
-    const token = getStoredToken();
-
+const addAdlistToGroup = async (address, group, token) => {
     if(!token) {
         console.error('Token not found');
         throw new Error('No token found');
@@ -221,9 +204,7 @@ const addAdlistToGroup = async (address, group) => {
     }
 };
 
-const removeAdlistFromGroup = async (address, group) => {
-    const token = getStoredToken();
-
+const removeAdlistFromGroup = async (address, group, token) => {
     if(!token) {
         console.error('Token not found');
         throw new Error('No token found');
@@ -249,9 +230,7 @@ const removeAdlistFromGroup = async (address, group) => {
     }
 };
 
-const getAdlistGroups = async (address) => {
-    const token = getStoredToken();
-
+const getAdlistGroups = async (address, token) => {
     if(!token) {
         console.error('Token not found');
         throw new Error('No token found');

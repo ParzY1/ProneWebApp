@@ -1,7 +1,5 @@
 const fetch = require('node-fetch');
 
-let storedToken = '';
-
 const loginHandler = async (req, res) => {
     const { identifier, password } = req.body;
 
@@ -18,9 +16,23 @@ const loginHandler = async (req, res) => {
 
         const { token, refreshToken } = await response.json();
 
-        storedToken = token;
+        res.cookie('name', identifier, {
+            httpOnly: false,
+            maxAge: 3600000,
+            sameSite: 'strict',
+            secure: false
+        });
 
-        console.log('Token stored in memory:', storedToken);
+        res.cookie('token', token, {
+            httpOnly: true,
+            maxAge: 3600000,
+            sameSite: 'strict',
+            secure: false
+        });
+
+        //storedToken = token;
+
+        console.log('Token stored in memory:', token);
 
         return res.status(200).json({ message: 'Login successful' });
     } catch (error) {
@@ -29,6 +41,4 @@ const loginHandler = async (req, res) => {
     }
 };
 
-const getStoredToken = () => storedToken;
-
-module.exports = { loginHandler, getStoredToken};
+module.exports = { loginHandler};

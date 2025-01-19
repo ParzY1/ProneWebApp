@@ -1,11 +1,8 @@
 const axios = require('axios');
-const { getStoredToken } = require('../middlewares/auth');
 
 const DOMAINS_BASE_URL = 'https://zsmeie-int.prone.pl/';
 
-const getWhitelist = async () => {
-    const token = getStoredToken();
-
+const getWhitelist = async (token) => {
     if(!token){
         console.error('Token not found');
         throw new Error('No token found');
@@ -28,9 +25,7 @@ const getWhitelist = async () => {
     }
 };
 
-const getBlacklist = async () => {
-    const token = getStoredToken();
-
+const getBlacklist = async (token) => {
     if(!token){
         console.error('Token not found');
         throw new Error('No token found');
@@ -53,9 +48,7 @@ const getBlacklist = async () => {
     }
 };
 
-const editDomainName = async (oldDomain, newDomain) => {
-    const token = getStoredToken();
-
+const editDomainName = async (oldDomain, newDomain, token) => {
     if(!token){
         console.error('Token not found');
         throw new Error('No token found');
@@ -80,8 +73,7 @@ const editDomainName = async (oldDomain, newDomain) => {
     }
 }
 
-const editDomainComment = async(domain, comment) => {
-    const token = getStoredToken();
+const editDomainComment = async(domain, comment, token) => {
     if(!token){
         console.error('Token not found');
         throw new Error('No token found');
@@ -106,9 +98,7 @@ const editDomainComment = async(domain, comment) => {
     }
 };
 
-const addToWhitelist = async(domain, comment) => {
-    const token = getStoredToken();
-
+const addToWhitelist = async(domain, comment, token) => {
     if(!token){
         console.error('Token not found');
         throw new Error('No token found');
@@ -133,9 +123,7 @@ const addToWhitelist = async(domain, comment) => {
     }
 };
 
-const addToBlacklist = async(domain, comment) => {
-    const token = getStoredToken();
-
+const addToBlacklist = async(domain, comment, token) => {
     if(!token) {
         console.error('Token not found');
         throw new Error('No token found');
@@ -160,9 +148,7 @@ const addToBlacklist = async(domain, comment) => {
     }
 }
 
-const removeFromWhitelist = async(domain) => {
-    const token = getStoredToken();
-
+const removeFromWhitelist = async(domain, token) => {
     if(!token){
         console.error('Token not found');
         throw new Error('No token found');
@@ -186,9 +172,7 @@ const removeFromWhitelist = async(domain) => {
     }
 };
 
-const removeFromBlacklist = async(domain) => {
-    const token = getStoredToken();
-
+const removeFromBlacklist = async(domain, token) => {
     if(!token){
         console.error('Token not found');
         throw new Error('No token found');
@@ -212,9 +196,7 @@ const removeFromBlacklist = async(domain) => {
     }
 };
 
-const addDomainToGroup = async(domain, group) => {
-    const token = getStoredToken();
-
+const addDomainToGroup = async(domain, group, token) => {
     if(!token){
         console.error('Token not found');
         throw new Error('No token found');
@@ -239,9 +221,7 @@ const addDomainToGroup = async(domain, group) => {
     }
 };
 
-const removeDomainFromGroup = async(domain, group) => {
-    const token = getStoredToken();
-
+const removeDomainFromGroup = async(domain, group, token) => {
     if(!token){
         console.error('Token not found');
         throw new Error('No token found');
@@ -266,9 +246,7 @@ const removeDomainFromGroup = async(domain, group) => {
     }
 };
 
-const enableDomain = async(domain) => {
-    const token = getStoredToken();
-
+const enableDomain = async(domain, token) => {
     if(!token) {
         console.error('Token not found');
         throw new Error('No token found');
@@ -292,9 +270,7 @@ const enableDomain = async(domain) => {
     }
 };
 
-const disableDomain = async(domain) => {
-    const token = getStoredToken();
-
+const disableDomain = async(domain, token) => {
     if(!token) {
         console.error('Token not found');
         throw new Error('No token found');

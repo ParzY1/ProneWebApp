@@ -1,11 +1,8 @@
 const axios = require('axios');
-const { getStoredToken } = require('../middlewares/auth');
 
 const QUERIES_BASE_URL = 'https://zsmeie-int.prone.pl';
  
-const fetchAllQueries = async() => {
-    const token = await getStoredToken();
-
+const fetchAllQueries = async(token) => {
     if(!token) {
         console.error('Token not found');
         throw new Error('No token found');
@@ -20,7 +17,6 @@ const fetchAllQueries = async() => {
 
     try{
         const response = await instance.get('/pi-hole/queries');
-        //console.log('Queries fetched successfully: ', response.data);
         return response.data;
     } catch (error) {
         console.error('Error fetching queries: ', error.response?.data || error.message);
@@ -28,9 +24,8 @@ const fetchAllQueries = async() => {
     }
 };
 
-const fetchQueriesLast24Hours = async () => {
+const fetchQueriesLast24Hours = async (token) => {
     try {
-        const token = await getStoredToken();
         if (!token) {
             console.error('Token not found in fetchQueriesLast24Hours');
             throw new Error('No token found');

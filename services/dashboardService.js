@@ -1,11 +1,8 @@
 const axios = require('axios');
-const { getStoredToken } = require('../middlewares/auth');
 
 const DASHBOARD_BASE_URL = 'https://zsmeie-int.prone.pl/';
 
-const fetchSummary = async() => {
-    const token = getStoredToken();
-
+const fetchSummary = async(token) => {
     if(!token){
         console.error('Token not found');
         throw new Error('No token found');
@@ -28,9 +25,7 @@ const fetchSummary = async() => {
     }
 };
 
-const fetchTopClients = async() => {
-    const token = getStoredToken();
-
+const fetchTopClients = async(token) => {
     if(!token) {
         console.error('Token not found');
         throw new Error('No token found');
@@ -53,13 +48,13 @@ const fetchTopClients = async() => {
     }
 };
 
-const fetchTopDomains = async() => {
-    const token = getStoredToken();
-
+const fetchTopDomains = async(token) => {
     if(!token) {
         console.error('Token not found');
         throw new Error('No token found');
     }
+
+    console.log("Token: ", token);
 
     const instance = axios.create({
         baseURL: DASHBOARD_BASE_URL,

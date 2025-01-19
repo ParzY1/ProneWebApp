@@ -1,10 +1,7 @@
 // groupService.js
 const axios = require('axios');
-const { getStoredToken } = require('../middlewares/auth'); // Import function to get stored token
 
-const fetchGroups = async () => {
-    const token = getStoredToken();  // Get the token from memory
-
+const fetchGroups = async (token) => {
     if (!token) {
         console.error('Token not found');
         throw new Error('No token found');
@@ -15,13 +12,13 @@ const fetchGroups = async () => {
     const instance = axios.create({
         baseURL: 'https://zsmeie-int.prone.pl',
         headers: {
-            Authorization: `Bearer ${token}`,  // Pass the token directly
+            Authorization: `Bearer ${token}`,
         },
     });
 
     try {
         const response = await instance.get('/groups/getGroups');
-        console.log('Groups fetched successfully:', response.data); // Log successful response
+        console.log('Groups fetched successfully:', response.data);
         return response.data;
     } catch (error) {
         console.error('Error fetching groups:', error.response?.data || error.message);
@@ -29,9 +26,7 @@ const fetchGroups = async () => {
     }
 };
 
-const addGroup = async (name, description) => {
-    const token = getStoredToken(); // Retrieve stored token
-
+const addGroup = async (name, description, token) => {
     if (!token) {
         console.error('Token not found');
         throw new Error('No token found');
@@ -40,7 +35,7 @@ const addGroup = async (name, description) => {
     const instance = axios.create({
         baseURL: 'https://zsmeie-int.prone.pl',
         headers: {
-            Authorization: `Bearer ${token}`, // Pass the token
+            Authorization: `Bearer ${token}`,
         },
     });
 
@@ -54,9 +49,7 @@ const addGroup = async (name, description) => {
     }
 };
 
-const editGroupName = async (oldName, newName) => {
-    const token = getStoredToken();
-
+const editGroupName = async (oldName, newName, token) => {
     if (!token) {
         throw new Error('No token found');
     }
@@ -64,7 +57,7 @@ const editGroupName = async (oldName, newName) => {
     const instance = axios.create({
         baseURL: 'https://zsmeie-int.prone.pl',
         headers: {
-            Authorization: `Bearer ${token}`, // Pass the token
+            Authorization: `Bearer ${token}`,
         },
     });
 
@@ -78,9 +71,7 @@ const editGroupName = async (oldName, newName) => {
     }
 };
 
-const editGroupDescription = async (name, description) => {
-    const token = getStoredToken();
-
+const editGroupDescription = async (name, description, token) => {
     if (!token) {
         throw new Error('No token found');
     }
@@ -88,7 +79,7 @@ const editGroupDescription = async (name, description) => {
     const instance = axios.create({
         baseURL: 'https://zsmeie-int.prone.pl',
         headers: {
-            Authorization: `Bearer ${token}`, // Pass the token
+            Authorization: `Bearer ${token}`,
         },
     });
 
@@ -102,9 +93,7 @@ const editGroupDescription = async (name, description) => {
     }
 };
 
-const deleteGroup = async (name) => {
-    const token = getStoredToken();
-
+const deleteGroup = async (name, token) => {
     if (!token) {
         throw new Error('No token found');
     }
@@ -126,9 +115,7 @@ const deleteGroup = async (name) => {
     }
 };
 
-const toggleGroupStatus = async (name, enable) => {
-    const token = getStoredToken();
-
+const toggleGroupStatus = async (name, enable, token) => {
     if (!token) {
         throw new Error('No token found');
     }

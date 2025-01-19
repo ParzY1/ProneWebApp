@@ -39,7 +39,6 @@ app.use('/dashboard', dashboardRoutes);
 app.get('/pl/:page', (req, res) => {
     const page = req.params.page;
     const validPages = ['login', 'dashboard', 'adlists', 'clients', 'domains', 'groups', 'query_log', 'settings'];
-    console.log(path.join(__dirname, `pl/${page}.html`));
     if (validPages.includes(page)) {
         res.sendFile(path.join(__dirname, `pl/${page}.html`));
     } else {
