@@ -6,12 +6,16 @@ body {
     color: #fff;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; 
-    overflow: hidden;
+    min-height: 100%;
+    padding-bottom: 60px;
     overflow-y:visible;
 }
 html, body {
     height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: visible;  
+    padding-bottom: 60px;
 }
 
 /* Sidebar */
@@ -67,6 +71,7 @@ html, body {
     flex:1;
     margin-left: 250px;
     padding: 20px;
+    padding-bottom: 60px;
 }
 
 /* Nagłówek */
@@ -210,16 +215,18 @@ h1 {
 
 /* Stopka */
 .footer {
-    text-align: center;
-    padding: 15px;
-    background-color: #1b1b1b;
-    color: #ffa500;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    position: fixed;        /* Ustawienie stopki na stałe na dole */
+    bottom: 0;              /* Wyrównanie do dołu ekranu */
+    left: 0;                /* Wyrównanie do lewej krawędzi */
+    width: 100%;            /* Szerokość 100% */
+    text-align: center;     /* Centrowanie tekstu */
+    padding: 15px;          /* Wewnętrzne odstępy */
+    background-color: #1b1b1b; 
+    color: #ffa500;         /* Kolor tekstu */
     font-size: 1em;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);  /* Cień na górze stopki */
 }
+
 /* Tabela zapytań */
 .query-table {
     width: 100%;
@@ -564,6 +571,7 @@ h1 {
 .container {
     padding: 30px;
     margin-left: 250px; 
+    padding-bottom: 60px;
 }
 
 /* Nagłówek główny */
