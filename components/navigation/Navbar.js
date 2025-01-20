@@ -13,6 +13,7 @@ const Navbar = {
                 <li><a href="/pl/clients">Klienci</a></li>
                 <li><a href="/pl/domains">Domeny</a></li>
                 <li><a href="/pl/settings">Ustawienia</a></li>
+                <li><a id="logout-link" href="/pl">Wyloguj</a></li>
             </ul>
         </nav>`;
     }

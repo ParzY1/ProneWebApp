@@ -23,7 +23,7 @@
                 <li><a href="/pl/clients">Klienci</a></li>
                 <li><a href="/pl/domains">Domeny</a></li>
                 <li><a href="/pl/settings">Ustawienia</a></li>
-                <li><a href="/pl">Wyloguj</a></li>
+                <li><a id="logout-link" href="/pl">Wyloguj</a></li>
             </ul>
         </nav>
     </div>
@@ -78,18 +78,6 @@
             }
         };
 
-        const fetchCostam = async () => {
-            try {
-                const response = await fetch('https://zsmeie-int.prone.pl/pi-hole/summary-statistics', {
-                    method: 'GET',
-                });
-                console.log(response); 
-            } catch(error) {
-                console.error('Error loading dashboard data:', error);
-            }
-        }
-
-        // Fetch and render top clients chart
         const renderTopClientsChart = async () => {
             try {
                 const response = await fetch('/dashboard/top-clients');
@@ -98,11 +86,9 @@
                 const data = await response.json();
                 const topSources = data.top_sources;
 
-                // Extract labels (IPs) and data (query counts)
                 const labels = Object.keys(topSources);
                 const counts = Object.values(topSources);
 
-                // Create Chart.js bar chart
                 const ctx = document.getElementById('topClientsChart').getContext('2d');
                 new Chart(ctx, {
                     type: 'bar',
@@ -163,7 +149,6 @@
                 const topQueries = data.top_queries;
                 const topAds = data.top_ads;
 
-                // Process data
                 const labels = Object.keys(topQueries);
                 const queryCounts = Object.values(topQueries);
                 const adCounts = labels.map(domain => topAds[domain] || 0);
@@ -214,11 +199,35 @@
             }
         };
 
+        const getNickname = async () => {
+            try {
+                const response = await fetch('/api/getUsername');
+                if (!response.ok) throw new Error('Failed to fetch the nickname.');
+
+                const { name } = await response.json();
+                document.querySelector('.welcome-page h2').textContent = `Witaj, ${name}!`;
+            } catch (error) {
+                console.error('Error fetching nickname:', error.message);
+                document.querySelector('.welcome-page h2').textContent = 'Witaj!';
+            }
+        };
+
+        document.getElementById('logout-link').addEventListener('click', async (event) => {
+            event.preventDefault();
+            try {
+                const response = await fetch('/api/logout', { method: 'POST' });
+                if (!response.ok) throw new Error('Failed to log out.');
+                window.location.href = '/pl';
+            } catch (error) {
+                console.error('Error logging out:', error);
+            }
+        });
+
         document.addEventListener('DOMContentLoaded', () => {
-            fetchCostam();
             fetchSummary();
             renderTopClientsChart();
             renderTopDomainsChart();
+            getNickname();
         });
     </script>
 </body>

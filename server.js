@@ -9,6 +9,7 @@ const dashboardRoutes = require('./routes/dashboardRoutes');
 const adlistRoutes = require('./routes/adlistRoutes');
 const cookieParser = require('cookie-parser');
 const { loginHandler } = require('./middlewares/auth');
+const { cookieHandler, logout } = require('./middlewares/cookies');
 
 const PORT = 3000;
 const app = express();
@@ -26,6 +27,8 @@ app.use('/scripts', express.static(path.join(__dirname, 'scripts')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/api/login', loginHandler);
+app.post('/api/logout', logout);
+app.get('/api/getUsername', cookieHandler);
 
 // Group routes
 app.use('/groups', groupRoutes);

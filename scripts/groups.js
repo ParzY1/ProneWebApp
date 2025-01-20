@@ -203,4 +203,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         const row = TableRow.render(group);
         tableBody.innerHTML += row;
     }
+
+    document.getElementById('logout-link').addEventListener('click', async (event) => {
+        event.preventDefault();
+        try {
+            const response = await fetch('/api/logout', { method: 'POST' });
+            if (!response.ok) throw new Error('Failed to log out.');
+            window.location.href = '/pl';
+        } catch (error) {
+            console.error('Error logging out:', error);
+        }
+    });
 });
