@@ -9,6 +9,10 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <div id="loading-overlay">
+        <img src="../img/logo.png">
+    </div>
+
     <div class="sidebar">
         <div class="logo">
             <img src="../img/logo.png" alt="Prone Logo">
@@ -60,7 +64,7 @@
     </footer>
 
     <script>
-        // Fetch and render summary data
+        let loaded = false;
         const fetchSummary = async () => {
             try {
                 const response = await fetch('/dashboard/summary');
@@ -222,13 +226,21 @@
                 console.error('Error logging out:', error);
             }
         });
-
+        const overlay = document.querySelector('#loading-overlay');
         document.addEventListener('DOMContentLoaded', () => {
             fetchSummary();
             renderTopClientsChart();
             renderTopDomainsChart();
             getNickname();
+            loaded = true;
         });
+
+        setTimeout(() => {
+            const overlay = document.querySelector('#loading-overlay');
+            if (overlay) {
+                overlay.remove();
+            }
+        }, loaded);
     </script>
 </body>
 </html>

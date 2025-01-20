@@ -4,19 +4,21 @@ import Form from '../components/forms/AddGroup.js';
 import Navbar from '../components/navigation/Navbar.js';
 import Footer from '../components/footer/Footer.js';
 
+let loaded = false;
+
 document.addEventListener('DOMContentLoaded', async () => {
     renderNavbar();
     renderForm();
     renderFooter();
     await fetchGroups();
 
+    loaded = true;
+
     document.querySelector('.group-table').addEventListener('click', async (event) => {
         const editButton = event.target.closest('.edit-button');
         const doneButton = event.target.closest('.done-btn');
         const deleteButton = event.target.closest('.delete-button');
         const toggle = event.target.closest('.group-toggle');
-        document.getElementById('loading').style.display = 'none';
-        document.getElementById('loaded').style.display = 'block';
         
         if (editButton) {
             enableEditMode(editButton.closest('tr'));
@@ -217,3 +219,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 });
+
+setTimeout(() => {
+    const overlay = document.querySelector('#loading-overlay');
+    if (overlay) {
+        overlay.remove();
+    }
+}, loaded);

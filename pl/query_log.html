@@ -8,7 +8,9 @@
     <link rel="icon" href="../img/logo.png" type="image/png">
 </head>
 <body>
-
+    <div id="loading-overlay">
+        <img src="../img/logo.png">
+    </div>
     <!-- Sidebar navigation -->
     <div class="sidebar">
         <div class="logo">
@@ -83,6 +85,8 @@
 
 </body>
 <script>
+    let loaded = false;
+
     const fetchQueriesLast24Hours = async () => {
         try {
             const response = await fetch('/logs/queries-last-24-hours');
@@ -97,7 +101,7 @@
 
     const renderTable = (data, currentPage, rowsPerPage) => {
         const tableBody = document.querySelector('.query-table tbody');
-        tableBody.innerHTML = ''; // Clear the table
+        tableBody.innerHTML = '';
 
         const startIndex = (currentPage - 1) * rowsPerPage;
         const endIndex = startIndex + rowsPerPage;
@@ -127,7 +131,7 @@
 
     const setupPagination = (data, rowsPerPage, currentPage) => {
         const pagination = document.querySelector('.pagination');
-        pagination.innerHTML = ''; // Clear existing pagination controls
+        pagination.innerHTML = '';
 
         const totalPages = Math.ceil(data.length / rowsPerPage);
 
@@ -137,33 +141,30 @@
             if (page === currentPage) button.classList.add('active');
             button.addEventListener('click', () => {
                 currentPage = page;
-                updatePagination(); // Refresh visible pagination
-                renderTable(data, currentPage, rowsPerPage); // Load data for current page
+                updatePagination();
+                renderTable(data, currentPage, rowsPerPage);
             });
             return button;
         };
 
         const updatePagination = () => {
-            pagination.innerHTML = ''; // Clear pagination
+            pagination.innerHTML = '';
 
-            // Add "Previous" button
             if (currentPage > 1) {
                 pagination.appendChild(createButton('Previous', currentPage - 1));
             }
 
-            // Dynamic page numbers
-            const range = 2; // Number of pages to show before and after current page
+            const range = 2;
             const visiblePages = [];
 
             for (let i = Math.max(1, currentPage - range); i <= Math.min(totalPages, currentPage + range); i++) {
                 visiblePages.push(i);
             }
 
-            // Include first page
             if (!visiblePages.includes(1)) {
                 pagination.appendChild(createButton(1, 1));
                 if (visiblePages[0] !== 2) {
-                    pagination.appendChild(document.createTextNode('...')); // Ellipsis
+                    pagination.appendChild(document.createTextNode('...'));
                 }
             }
 
@@ -173,12 +174,11 @@
             // Include last page
             if (!visiblePages.includes(totalPages)) {
                 if (visiblePages[visiblePages.length - 1] !== totalPages - 1) {
-                    pagination.appendChild(document.createTextNode('...')); // Ellipsis
+                    pagination.appendChild(document.createTextNode('...'));
                 }
                 pagination.appendChild(createButton(totalPages, totalPages));
             }
 
-            // Add "Next" button
             if (currentPage < totalPages) {
                 pagination.appendChild(createButton('Next', currentPage + 1));
             }
@@ -215,15 +215,22 @@
             setupPagination(filteredData, rowsPerPage, currentPage);
         };
 
-        // Add event listeners for input changes
         document.getElementById('filter-client').addEventListener('input', updateTable);
         document.getElementById('filter-domain').addEventListener('input', updateTable);
 
-        // Initial render
         updateTable();
+        if (queryData.status(200)) {
+            loaded = true;
+        }
     };
 
     document.addEventListener('DOMContentLoaded', init);
 
+    setTimeout(() => {
+        const overlay = document.querySelector('#loading-overlay');
+        if (overlay) {
+            overlay.remove();
+        }
+    }, loaded);
 </script>
 </html>

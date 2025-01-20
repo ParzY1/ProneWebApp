@@ -6,7 +6,9 @@ import Footer from "../components/footer/Footer.js";
 import WhitelistTable from "../components/whitelistTables/Table.js";
 import WhitelistTableRow from "../components/whitelistTables/TableRow.js";
 
-document.addEventListener('DOMContentLoaded', async () => {;
+let loaded = false;
+
+document.addEventListener('DOMContentLoaded', async () => {
     try{
         renderNavbar();
         renderFooter();
@@ -19,6 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {;
         const blacklistTable = BlacklistTable.render(blacklistData, blacklistGroupsData);
         document.querySelector('.white-list').innerHTML = whitelistTable;
         document.querySelector('.black-list').innerHTML = blacklistTable;
+        loaded = true;
     } catch(error) {
         console.error('Error loading domains or groups:', error.message);
         alert('Nie udało się załadować danych domen i grup.');
@@ -303,3 +306,10 @@ document.addEventListener('DOMContentLoaded', async () => {;
         }
     });
 });
+
+setTimeout(() => {
+    const overlay = document.querySelector('#loading-overlay');
+    if (overlay) {
+        overlay.remove();
+    }
+}, loaded);

@@ -4,6 +4,8 @@ import Form from "../components/forms/AddClient.js";
 import Footer from "../components/footer/Footer.js";
 import Navbar from "../components/navigation/Navbar.js";
 
+let loaded = false;
+
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         renderNavbar();
@@ -13,6 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const groupsData = await Table.fetchGroups();
         const table = Table.render(clientsData.data, groupsData);
         document.querySelector('.clients-table-container').innerHTML = table;
+        loaded = true;
     } catch (error) {
         console.error('Error loading clients or groups:', error.message);
         alert('Nie udało się załadować danych klientów i grup.');
@@ -184,3 +187,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 });
+
+setTimeout(() => {
+    const overlay = document.querySelector('#loading-overlay');
+    if (overlay) {
+        overlay.remove();
+    }
+}, loaded);
