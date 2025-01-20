@@ -29,20 +29,198 @@
     </div>
     <div class="main-content">
         <h1>Prone Dashboard</h1>
-        <div class="dashboard-tiles">
-            <div class="tile">Total Queries</div>
-            <div class="tile">Queries Blocked</div>
-            <div class="tile">Domains on Adlists</div>
+    
+        <div class="welcome-page">
+            <h2>Welcome, user: ZSMEIE!</h2>
+            <p>Here is a summary of your data:</p>
         </div>
-
+        
+    
+        <div class="dashboard-tiles">
+            <div class="tile" id="dns-queries">Number of queries: <span>-</span></div>
+            <div class="tile" id="ads-blocked">Blocked queries: <span>-</span></div>
+            <div class="tile" id="ads-percentage">Blocked percentage: <span>-</span></div>
+            <div class="tile" id="domains-blocked">Domains on the list: <span>-</span></div>
+        </div>
+        
+    
         <div class="charts">
-            <div class="chart">Total queries over last 24 hours</div>
-            <div class="chart">Client activity over last 24 hours</div>
+            <div class="chart">
+                <canvas id="topClientsChart"></canvas>
+            </div>
+            <div class="chart">
+                <canvas id="topDomainsChart"></canvas>
+            </div>
         </div>
     </div>
+    
     <footer class="footer">
         Created by ACDIT Sp. z o.o.
     </footer>
+    
+    <script>
+        // Fetch and render summary data
+        const fetchSummary = async () => {
+            try {
+                const response = await fetch('/dashboard/summary');
+                if (!response.ok) throw new Error('Failed to fetch summary data');
+    
+                const data = await response.json();
+    
+                document.getElementById('dns-queries').querySelector('span').textContent = data.dnsQueriesToday || '0';
+                document.getElementById('ads-blocked').querySelector('span').textContent = data.adsBlockedToday || '0';
+                document.getElementById('ads-percentage').querySelector('span').textContent = `${data.adsPercentageToday || '0.0'}%`;
+                document.getElementById('domains-blocked').querySelector('span').textContent = data.domainsBlocked || '0';
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+                alert('Failed to load dashboard data. Please try again later.');
+            }
+        };
+    
+        const fetchCostam = async () => {
+            try {
+                const response = await fetch('https://zsmeie-int.prone.pl/pi-hole/summary-statistics', {
+                    method: 'GET',
+                });
+                console.log(response); 
+            } catch(error) {
+                console.error('Error loading dashboard data:', error);
+            }
+        }
+    
+        // Fetch and render top clients chart
+        const renderTopClientsChart = async () => {
+            try {
+                const response = await fetch('/dashboard/top-clients');
+                if (!response.ok) throw new Error('Failed to fetch top clients data');
+    
+                const data = await response.json();
+                const topSources = data.top_sources;
+    
+                // Extract labels (IPs) and data (query counts)
+                const labels = Object.keys(topSources);
+                const counts = Object.values(topSources);
+    
+                // Create Chart.js bar chart
+                const ctx = document.getElementById('topClientsChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Client queries',
+                            data: counts,
+                            backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 205, 86, 0.2)',
+                            'rgba(153, 102, 255, 0.2)'],
+                            borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255, 205, 86, 1)',
+                            'rgba(153, 102, 255, 1)'],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false,
+                            },
+                            title: {
+                                display: false,
+                                text: 'Client queries'
+                            },
+                        },
+                        scales: {
+                            y: {
+                                title: {
+                                    display: false,
+                                },
+                                beginAtZero: true
+                            },
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error loading top clients data:', error);
+                alert('Failed to load client query data.');
+            }
+        };
+    
+        const renderTopDomainsChart = async () => {
+            try {
+                const response = await fetch('/dashboard/top-domains');
+                if (!response.ok) throw new Error('Failed to fetch top domains data');
+    
+                const data = await response.json();
+                const topQueries = data.top_queries;
+                const topAds = data.top_ads;
+    
+                // Process data
+                const labels = Object.keys(topQueries);
+                const queryCounts = Object.values(topQueries);
+                const adCounts = labels.map(domain => topAds[domain] || 0);
+    
+                const ctx = document.getElementById('topDomainsChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Queries',
+                                data: queryCounts,
+                                backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 205, 86, 0.2)',
+                            'rgba(153, 102, 255, 0.2)'],
+                            borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255, 205, 86, 1)',
+                            'rgba(153, 102, 255, 1)'],
+                                borderWidth: 1
+                            },
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            title: { display: true }
+                        },
+                        scales: {
+                            y: {
+                                title: { display: true, text: 'Number of queries' },
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error loading top domains data:', error);
+                alert('Failed to load domain query data.');
+            }
+        };
+    
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchCostam();
+            fetchSummary();
+            renderTopClientsChart();
+            renderTopDomainsChart();
+        });
+    </script>
+    
 </body>
 
 </html>
