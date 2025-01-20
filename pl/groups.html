@@ -39,7 +39,7 @@
             </div> -->
 
             <!-- Tabela grup -->
-            <table class="group-table">
+            <table class="group-table skeleton">
                 <thead>
                     <tr>
                         <th>Nazwa</th>
@@ -48,11 +48,13 @@
                         <th>Akcje</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td colspan="4">Ładowanie grup...</td>
-                    </tr>
-                </tbody>
+                <tr>
+                    <td><div class="skeleton-box"></div></td>
+                    <td><div class="skeleton-box"></div></td>
+                    <td><div class="skeleton-box"></div></td>
+                    <td><div class="skeleton-box"></div></td>
+                </tr>  
+            </tbody>
             </table>
         </section>
 
@@ -61,8 +63,9 @@
             <p>Uwaga: Zapytania dotyczące Prone i nazwy hosta nigdy nie są logowane.</p>
         </div>
     </div>
-
-    <!-- Footer -->
+    <footer class="footer">
+        Created by ACDIT Sp. z o.o.
+    </footer>
 </body>  
 <script type="module" src="../scripts/groups.js"></script>
 </html>
