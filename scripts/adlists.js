@@ -7,13 +7,13 @@ import Navbar from "../components/navigation/Navbar.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
     try{
+        renderNavbar();
+        renderForm();
+        renderFooter();
         const adlistsData = await Table.getAdlists();
         const groupsData = await Table.getGroups();
         const adlistTable = await Table.render(adlistsData, groupsData);
         document.querySelector('.adlist-table').innerHTML = adlistTable;
-        renderForm();
-        renderNavbar();
-        renderFooter();
     } catch(error) {
         console.error('Error loading adlists or groups: ', error.message);
         alert('Nie udało się załadować stron poprawnie.');

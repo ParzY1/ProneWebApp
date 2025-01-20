@@ -6,13 +6,13 @@ import Navbar from "../components/navigation/Navbar.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
+        renderNavbar();
+        renderForm();
+        renderFooter();
         const clientsData = await Table.fetchClients();
         const groupsData = await Table.fetchGroups();
         const table = Table.render(clientsData.data, groupsData);
         document.querySelector('.clients-table-container').innerHTML = table;
-        renderForm();
-        renderNavbar();
-        renderFooter();
     } catch (error) {
         console.error('Error loading clients or groups:', error.message);
         alert('Nie udało się załadować danych klientów i grup.');

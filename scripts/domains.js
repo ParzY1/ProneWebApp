@@ -8,6 +8,9 @@ import WhitelistTableRow from "../components/whitelistTables/TableRow.js";
 
 document.addEventListener('DOMContentLoaded', async () => {;
     try{
+        renderNavbar();
+        renderFooter();
+        renderForm();
         const whitelistData = await WhitelistTable.fetchWhitelist();
         const blacklistData = await BlacklistTable.fetchBlacklist();
         const whitelistGroupsData = await WhitelistTable.fetchGroups();
@@ -16,9 +19,6 @@ document.addEventListener('DOMContentLoaded', async () => {;
         const blacklistTable = BlacklistTable.render(blacklistData, blacklistGroupsData);
         document.querySelector('.white-list').innerHTML = whitelistTable;
         document.querySelector('.black-list').innerHTML = blacklistTable;
-        renderForm();
-        renderNavbar();
-        renderFooter();
     } catch(error) {
         console.error('Error loading domains or groups:', error.message);
         alert('Nie udało się załadować danych domen i grup.');

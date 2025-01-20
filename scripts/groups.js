@@ -5,16 +5,18 @@ import Navbar from '../components/navigation/Navbar.js';
 import Footer from '../components/footer/Footer.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-    await fetchGroups();
-    renderForm();
     renderNavbar();
+    renderForm();
     renderFooter();
+    await fetchGroups();
 
     document.querySelector('.group-table').addEventListener('click', async (event) => {
         const editButton = event.target.closest('.edit-button');
         const doneButton = event.target.closest('.done-btn');
         const deleteButton = event.target.closest('.delete-button');
         const toggle = event.target.closest('.group-toggle');
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('loaded').style.display = 'block';
         
         if (editButton) {
             enableEditMode(editButton.closest('tr'));
